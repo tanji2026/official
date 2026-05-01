@@ -73,7 +73,7 @@
                     id: 'finance',
                     title: '企業綠色融資與碳管理',
                     desc: '專為企業設計的碳排管理儀表板，深度整合 AWS 雲端服務，實現即時碳排運算與數據庫管理。',
-                    img: 'tanjibaby7.jpg',
+                    img: 'images/tanjibaby7.jpg',
                     tag: 'B2B 企業方案',
                     color: 'from-blue-50 to-indigo-50',
                     textColor: 'text-indigo-700'
@@ -82,7 +82,7 @@
                     id: 'nbs',
                     title: '社區微氣候韌性決策',
                     desc: '結合 GIS 風險快篩與 NbS 自然解方，協助社區指認熱點、模擬降溫效益，落實氣候韌性。',
-                    img: 'tanjibaby6.jpg',
+                    img: 'images/tanjibaby6.jpg',
                     tag: 'B2G 社區治理',
                     color: 'from-emerald-50 to-teal-50',
                     textColor: 'text-emerald-700'
@@ -91,7 +91,7 @@
                     id: 'edu',
                     title: '互動教育與地方創生',
                     desc: '開發 CCUS 多人連線模擬器與三峽職人實境遊戲，將嚴肅的環境議題轉化為趣味的數位體驗。',
-                    img: 'tanjibaby8.jpg',
+                    img: 'images/tanjibaby8.jpg',
                     tag: 'B2C 教育創新',
                     color: 'from-amber-50 to-orange-50',
                     textColor: 'text-amber-700'
@@ -126,13 +126,13 @@
                 <div className="min-h-screen flex flex-col relative bg-[#f4faf7]">
                     <nav className="absolute top-0 w-full z-50 py-4 px-6 md:px-10 flex justify-between items-center backdrop-blur-sm bg-white/30">
                         <div className="font-black text-2xl tracking-tight text-emerald-900 flex items-center gap-2 cursor-pointer">
-                            <span className="bg-emerald-500 text-white w-8 h-8 rounded-lg flex items-center justify-center text-lg shadow-sm">T</span>
+                            <img src="images/tanjibaby.png" alt="TanJi Logo" className="w-10 h-10 object-contain blend-multiply" />
                             碳吉 TanJi
                         </div>
                         <div className="hidden md:flex items-center gap-8 font-bold text-sm text-emerald-900/70">
                             <a href="#solutions" className="hover:text-emerald-600 transition-colors">解決方案</a>
                             <a href="#about" className="hover:text-emerald-600 transition-colors">關於我們</a>
-                            <a href="#" className="px-5 py-2.5 bg-emerald-100 text-emerald-800 rounded-full hover:bg-emerald-200 transition-colors shadow-sm">聯絡合作</a>
+                            <a href="mailto:tanji2026@gmail.com" className="px-5 py-2.5 bg-emerald-100 text-emerald-800 rounded-full hover:bg-emerald-200 transition-colors shadow-sm">聯絡合作</a>
                         </div>
                     </nav>
 
@@ -184,11 +184,11 @@
                                         
                                         <video 
                                             ref={videoRef}
-                                            src="tanjibaby_hi.mp4" 
+                                            src="videos/tanjibaby_hi.mp4" 
                                             className="w-full h-auto blend-multiply scale-110 drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
                                             muted 
                                             playsInline
-                                            poster="tanjibaby.png"
+                                            poster="images/tanjibaby.png"
                                             loop={false}
                                         ></video>
                                         
@@ -231,14 +231,19 @@
                         <section className="py-20 px-6 bg-slate-800 relative overflow-hidden">
                             <div className="max-w-5xl mx-auto bg-slate-700/50 rounded-3xl p-8 md:p-12 border border-slate-600 flex flex-col md:flex-row items-center gap-8 md:gap-12 backdrop-blur-sm relative z-10">
                                 <div className="w-40 h-40 flex-shrink-0 relative">
-                                    <img src="tanjibaby9.jpg" alt="Sleeping Baby" className="w-full h-full object-cover rounded-full border-4 border-slate-600 shadow-2xl mix-blend-screen opacity-90" />
+                                    <img src="images/tanjibaby9.jpg" alt="Sleeping Baby" className="w-full h-full object-cover rounded-full border-4 border-slate-600 shadow-2xl mix-blend-screen opacity-90" />
                                 </div>
                                 <div className="text-center md:text-left flex-grow">
                                     <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">準備好啟動永續轉型了嗎？</h3>
                                     <p className="text-slate-300 mb-6 max-w-lg">無論是企業碳排管理、社區韌性建構，還是創新的環境教育專案，碳吉團隊都能為您提供專業的技術支援。</p>
-                                    <button className="px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold rounded-full transition-colors">
-                                        與我們聯繫
-                                    </button>
+                                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                                        <a href="mailto:tanji2026@gmail.com" className="px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold rounded-full transition-colors inline-block">
+                                            與我們聯繫
+                                        </a>
+                                        <a href="mailto:tanji2026@gmail.com" className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
+                                            tanji2026@gmail.com
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </section>
