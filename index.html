@@ -8,22 +8,15 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; scroll-behavior: smooth; }
-        
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-12px); }
             100% { transform: translateY(0px); }
         }
         .animate-float { animation: float 4s ease-in-out infinite; }
-        
         @keyframes blob {
             0% { transform: translate(0px, 0px) scale(1); }
             33% { transform: translate(30px, -50px) scale(1.1); }
@@ -34,31 +27,42 @@
         .animation-delay-2000 { animation-delay: 2s; }
         .animation-delay-4000 { animation-delay: 4s; }
         .blend-multiply { mix-blend-mode: multiply; }
-        
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="text-slate-800 antialiased overflow-x-hidden selection:bg-emerald-200 selection:text-emerald-900">
     <div id="root"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'tanji-app';
+        let firebaseConfig;
+        try {
+            firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+                apiKey: "AIzaSyBQ3C7vHQeO3u7adXfCaJIc-hOIzEUOQgA",
+                authDomain: "tanji-official.firebaseapp.com",
+                projectId: "tanji-official",
+                storageBucket: "tanji-official.firebasestorage.app",
+                messagingSenderId: "1018704566018",
+                appId: "1:1018704566018:web:0f88d5a10e5cef1d02141b"
+            };
+        } catch(e) {
+            firebaseConfig = {};
+        }
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        window.firebaseEnv = { auth, db, appId, signInAnonymously, signInWithCustomToken, onAuthStateChanged, signOut, doc, getDoc };
+    </script>
+
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBQ3C7vHQeO3u7adXfCaJIc-hOIzEUOQgA",
-            authDomain: "tanji-official.firebaseapp.com",
-            projectId: "tanji-official",
-            storageBucket: "tanji-official.firebasestorage.app",
-            messagingSenderId: "1018704566018",
-            appId: "1:1018704566018:web:0f88d5a10e5cef1d02141b"
-        };
-        
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const provider = new firebase.auth.GoogleAuthProvider();
 
         const ArrowRight = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>;
         const Leaf = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 5.2 6.1A7 7 0 0 1 11 20z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>;
@@ -70,7 +74,6 @@
         const Award = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>;
         const Mail = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>;
         const CheckCircle = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>;
-        const PlayCircle = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>;
         const ExternalLink = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>;
         const AlertCircle = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
         const Settings = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>;
@@ -92,7 +95,8 @@
         const awardsData = [
             { id: 1, year: '2026', title: '115年度 氣候變遷創意實作競賽', issuer: '教育部', desc: '【晉級全國決賽】以「碳吉：社區微氣候韌性決策平台」參賽，提出結合 GIS 風險快篩與 NbS 自然解方的社區氣候韌性創新方案。', status: 'current', platformLink: '#', awardLink: '#' },
             { id: 2, year: '2026', title: 'IASE 影響力創新獎', issuer: 'IASE', desc: '【入圍青年人才】開發「三峽職人：手路尋蹤」，結合職人性格測驗與在地文化互動網頁，引導線下實體工作坊體驗，促進地方創生。', status: 'done', platformLink: '#', awardLink: '#' },
-            { id: 3, year: '2026', title: 'Impact Star 青年影響力啟動賽', issuer: '新北市政府青年局', desc: '【晉級複賽】以推廣三峽地方創生之數位互動體驗專案，獲得評審青睞，展現科技賦能社會影響力。', status: 'done', platformLink: '#', awardLink: '#' }
+            { id: 3, year: '2026', title: 'Impact Star 青年影響力啟動賽', issuer: '新北市政府青年局', desc: '【晉級複賽】以推廣三峽地方創生之數位互動體驗專案，獲得評審青睞，展現科技賦能社會影響力。', status: 'done', platformLink: '#', awardLink: '#' },
+            { id: 4, year: '2025', title: 'SDGs 永續發展目標實踐獎', issuer: '台灣永續能源研究基金會', desc: '【優選】表彰團隊在推動教育創新及地方社區韌性培力上的卓越貢獻，落實 SDGs 多項指標。', status: 'done', platformLink: '#', awardLink: '#' }
         ];
 
         const services = [
@@ -111,6 +115,61 @@
                         <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors ml-2">
                             <X size={18}/>
                         </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const LoginModal = ({ isOpen, onClose, onConfirm }) => {
+            if (!isOpen) return null;
+            return (
+                <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[150] flex items-center justify-center p-4">
+                    <div className="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-6 relative">
+                        <button onClick={onClose} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><X size={20}/></button>
+                        <div className="text-center mb-6">
+                            <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <UserIcon size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-800">會員登入</h3>
+                            <p className="text-sm text-slate-500 mt-2">登入後即可解鎖專屬永續功能與完整知識庫</p>
+                        </div>
+                        <div className="space-y-4">
+                            <button onClick={onConfirm} className="w-full py-3 px-4 bg-white border-2 border-slate-100 rounded-xl font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-200 transition-all flex items-center justify-center gap-3">
+                                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="w-5 h-5"/>
+                                使用 Google 帳號登入
+                            </button>
+                            <button onClick={onConfirm} className="w-full py-3 px-4 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-900 transition-all">
+                                訪客快速登入
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const NoteModal = ({ isOpen, onClose, note }) => {
+            if (!isOpen || !note) return null;
+            return (
+                <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[150] flex items-center justify-center p-4">
+                    <div className="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+                        <div className={`p-6 flex items-center justify-between ${note.color} bg-opacity-20`}>
+                            <div className="flex items-center gap-3">
+                                <div className={`p-2 bg-white rounded-xl shadow-sm ${note.color.split(' ')[1]}`}>
+                                    {note.icon}
+                                </div>
+                                <h3 className="text-xl font-black text-slate-800">{note.title}</h3>
+                            </div>
+                            <button onClick={onClose} className="text-slate-500 hover:text-slate-800 bg-white/50 p-2 rounded-full"><X size={20}/></button>
+                        </div>
+                        <div className="p-8">
+                            <p className="text-slate-600 leading-relaxed text-lg mb-6">{note.desc}</p>
+                            <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-sm text-slate-500">
+                                💡 完整內容與隨堂測驗僅開放給註冊會員使用，快去登入解鎖吧！
+                            </div>
+                        </div>
+                        <div className="p-4 border-t border-slate-100 bg-slate-50 flex justify-end">
+                            <button onClick={onClose} className="px-6 py-2 bg-slate-800 text-white rounded-full font-bold text-sm hover:bg-slate-900">確認</button>
+                        </div>
                     </div>
                 </div>
             );
@@ -222,12 +281,14 @@
                             {user ? (
                                 <div className="relative">
                                     <button onClick={() => setShowUserMenu(!showUserMenu)} className="flex items-center gap-2 px-4 py-1.5 bg-white text-slate-700 rounded-full hover:bg-slate-50 transition-colors shadow-sm font-bold text-sm border border-slate-200">
-                                        <img src={user.photoURL} alt="Avatar" className="w-6 h-6 rounded-full" referrerPolicy="no-referrer" />
-                                        {user.displayName.split(' ')[0]}
+                                        <div className="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+                                            <UserIcon size={14} />
+                                        </div>
+                                        {user.displayName || '使用者'}
                                     </button>
                                     {showUserMenu && (
                                         <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 border border-slate-100 flex flex-col overflow-hidden">
-                                            <span className="px-4 py-3 text-xs text-slate-400 border-b border-slate-100 mb-1 truncate bg-slate-50">{user.email}</span>
+                                            <span className="px-4 py-3 text-xs text-slate-400 border-b border-slate-100 mb-1 truncate bg-slate-50">{user.email || 'guest@tanji.com'}</span>
                                             {isAdmin && (
                                                 <button onClick={() => { onOpenAdmin(); setShowUserMenu(false); }} className="px-4 py-2.5 text-sm text-left text-emerald-700 hover:bg-emerald-50 font-bold transition-colors border-b border-slate-100 flex items-center gap-2">
                                                     <Settings size={14}/> 管理後台
@@ -261,10 +322,12 @@
                             {user ? (
                                 <div className="flex flex-col gap-2">
                                     <div className="flex items-center gap-3 p-2 mb-2 bg-slate-50 rounded-xl">
-                                        <img src={user.photoURL} alt="Avatar" className="w-10 h-10 rounded-full" referrerPolicy="no-referrer" />
+                                        <div className="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+                                            <UserIcon size={20} />
+                                        </div>
                                         <div className="flex flex-col overflow-hidden">
-                                            <span className="text-sm truncate">{user.displayName}</span>
-                                            <span className="text-xs text-slate-400 font-normal truncate">{user.email}</span>
+                                            <span className="text-sm truncate">{user.displayName || '使用者'}</span>
+                                            <span className="text-xs text-slate-400 font-normal truncate">{user.email || 'guest@tanji.com'}</span>
                                         </div>
                                     </div>
                                     {isAdmin && (
@@ -273,7 +336,7 @@
                                         </button>
                                     )}
                                     <button className="w-full p-3 bg-emerald-50 hover:bg-emerald-100 transition-colors text-emerald-700 rounded-xl font-bold">會員中心</button>
-                                    <button onClick={onLogout} className="w-full p-3 bg-red-50 hover:bg-red-100 transition-colors text-red-600 rounded-xl font-bold">登出</button>
+                                    <button onClick={() => { onLogout(); setIsMobileMenuOpen(false); }} className="w-full p-3 bg-red-50 hover:bg-red-100 transition-colors text-red-600 rounded-xl font-bold">登出</button>
                                 </div>
                             ) : (
                                 <button onClick={() => { onLogin(); setIsMobileMenuOpen(false); }} className="flex items-center justify-center gap-2 w-full p-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors">
@@ -389,32 +452,30 @@
                             <p className="text-slate-500 font-medium max-w-2xl">碳吉計畫在產官學界獲得的肯定與創新足跡</p>
                         </div>
 
-                        <div className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {awardsData.map((award) => (
-                                <div key={award.id} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 items-start hover:shadow-md transition-shadow group relative overflow-hidden">
+                                <div key={award.id} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col gap-4 hover:shadow-md transition-shadow group relative overflow-hidden">
                                     <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${award.status === 'current' ? 'bg-amber-400' : 'bg-slate-300'}`}></div>
-                                    
-                                    <div className="flex-shrink-0 w-24 h-24 rounded-full bg-slate-50 border-4 border-white shadow-sm flex flex-col items-center justify-center relative z-10">
-                                        <span className={`text-sm font-black ${award.status === 'current' ? 'text-amber-600' : 'text-slate-400'}`}>{award.year}</span>
-                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{award.status === 'current' ? 'NOW' : 'DONE'}</span>
+                                    <div className="flex items-start gap-4">
+                                        <div className="flex-shrink-0 w-16 h-16 rounded-full bg-slate-50 border-2 border-white shadow-sm flex flex-col items-center justify-center relative z-10">
+                                            <span className={`text-sm font-black ${award.status === 'current' ? 'text-amber-600' : 'text-slate-400'}`}>{award.year}</span>
+                                        </div>
+                                        <div className="flex-grow pt-1">
+                                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                                                <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-md tracking-wider">{award.issuer}</span>
+                                                {award.status === 'current' && <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-md flex items-center gap-1 animate-pulse"><div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div>進行中</span>}
+                                            </div>
+                                            <h3 className="text-lg font-bold text-slate-800 group-hover:text-emerald-700 transition-colors leading-tight">{award.title}</h3>
+                                        </div>
                                     </div>
-                                    
-                                    <div className="flex-grow pt-2 w-full">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <span className="px-2.5 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-md tracking-wider">{award.issuer}</span>
-                                            {award.status === 'current' && <span className="px-2 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-md flex items-center gap-1 animate-pulse"><div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div>進行中</span>}
-                                        </div>
-                                        <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-emerald-700 transition-colors">{award.title}</h3>
-                                        <p className="text-slate-600 text-sm leading-relaxed">{award.desc}</p>
-                                        
-                                        <div className="flex flex-wrap gap-3 mt-5 pt-4 border-t border-slate-100">
-                                            <a href={award.platformLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 hover:text-emerald-800 rounded-lg text-xs font-bold transition-colors">
-                                                前往專案平台 <ExternalLink size={14}/>
-                                            </a>
-                                            <a href={award.awardLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-50 text-amber-700 hover:bg-amber-100 hover:text-amber-800 rounded-lg text-xs font-bold transition-colors">
-                                                查看得獎證明 <ExternalLink size={14}/>
-                                            </a>
-                                        </div>
+                                    <p className="text-slate-600 text-sm leading-relaxed flex-grow">{award.desc}</p>
+                                    <div className="flex gap-2 mt-2 pt-4 border-t border-slate-50">
+                                        <a href={award.platformLink} className="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg text-xs font-bold transition-colors">
+                                            專案平台 <ExternalLink size={12}/>
+                                        </a>
+                                        <a href={award.awardLink} className="inline-flex items-center gap-1 px-3 py-1.5 bg-amber-50 text-amber-700 hover:bg-amber-100 rounded-lg text-xs font-bold transition-colors">
+                                            得獎證明 <ExternalLink size={12}/>
+                                        </a>
                                     </div>
                                 </div>
                             ))}
@@ -424,15 +485,15 @@
             );
         };
 
-        const AcademySection = () => {
+        const AcademySection = ({ onOpenNote }) => {
             const scrollRef = useRef(null);
             
             return (
-                <section id="academy" className="py-24 px-6 bg-gradient-to-b from-white to-emerald-50 overflow-hidden relative">
+                <section id="academy" className="py-24 px-0 bg-gradient-to-b from-white to-emerald-50 overflow-hidden relative">
                     <div className="absolute top-10 left-10 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl pointer-events-none"></div>
                     <div className="absolute bottom-10 right-10 w-80 h-80 bg-teal-200/20 rounded-full blur-3xl pointer-events-none"></div>
                     
-                    <div className="max-w-7xl mx-auto relative z-10">
+                    <div className="max-w-7xl mx-auto relative z-10 px-6">
                         <div className="flex flex-col items-center text-center mb-16">
                             <div className="inline-flex items-center justify-center p-3 bg-emerald-100 text-emerald-600 rounded-xl mb-4">
                                 <BookOpen size={28} />
@@ -440,10 +501,12 @@
                             <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">碳吉小學堂</h2>
                             <p className="text-slate-600 font-medium max-w-2xl">每天三分鐘，輕鬆掌握 ESG 與永續金融的核心概念，成為綠領人才的起點。</p>
                         </div>
-                        
-                        <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-8 hide-scrollbar snap-x snap-mandatory">
+                    </div>
+                    
+                    <div className="max-w-[1400px] mx-auto">
+                        <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-8 pt-4 px-6 lg:px-12 hide-scrollbar snap-x snap-mandatory">
                             {academyCards.map((card) => (
-                                <div key={card.id} className="min-w-[300px] md:min-w-[350px] bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 snap-center flex flex-col group cursor-pointer relative overflow-hidden">
+                                <div key={card.id} onClick={() => onOpenNote(card)} className="min-w-[280px] md:min-w-[320px] bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 snap-center flex flex-col group cursor-pointer relative overflow-hidden shrink-0">
                                     <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-emerald-50 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 shadow-sm ${card.color}`}>
                                         {card.icon}
@@ -455,20 +518,21 @@
                                     </button>
                                 </div>
                             ))}
-                            <div className="min-w-[300px] md:min-w-[350px] bg-emerald-600 p-8 rounded-3xl shadow-md text-white flex flex-col justify-center items-center text-center snap-center relative overflow-hidden group cursor-pointer">
+                            <div className="min-w-[280px] md:min-w-[320px] bg-emerald-600 p-8 rounded-3xl shadow-md text-white flex flex-col justify-center items-center text-center snap-center relative overflow-hidden group cursor-pointer shrink-0">
                                 <div className="absolute inset-0 bg-[url('https://placehold.co/400x400/047857/059669?text=pattern')] opacity-20 mix-blend-overlay"></div>
                                 <Lightbulb size={48} className="mb-4 text-emerald-200 group-hover:scale-110 transition-transform duration-500" />
                                 <h3 className="text-2xl font-bold mb-2 relative z-10">探索更多知識</h3>
-                                <p className="text-emerald-100 text-sm mb-6 relative z-10">註冊會員，解鎖完整 ESG 資料庫與測驗</p>
+                                <p className="text-emerald-100 text-sm mb-6 relative z-10">註冊會員，解鎖完整 ESG 資料庫</p>
                                 <span className="px-6 py-2 bg-white text-emerald-700 rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-shadow relative z-10">前往知識庫</span>
                             </div>
+                            <div className="min-w-[1px] shrink-0"></div>
                         </div>
                     </div>
                 </section>
             );
         };
 
-        const ServicesSection = () => {
+        const ServicesSection = ({ showToast }) => {
             return (
                 <section id="services" className="py-24 px-6 bg-slate-900 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -500,7 +564,7 @@
                                 <h3 className="text-2xl font-bold text-slate-800 mb-2">聯絡合作</h3>
                                 <p className="text-slate-500 text-sm mb-8">請留下您的需求，團隊專員將盡快與您聯繫。</p>
                                 
-                                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                                <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); showToast("感謝您的來信！此為展示介面，我們已收到您的心意。"); }}>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                         <div className="space-y-1.5">
                                             <label className="text-xs font-bold text-slate-700 ml-1">聯絡人姓名</label>
@@ -525,7 +589,7 @@
                                             <option value="other">其他合作洽談</option>
                                         </select>
                                     </div>
-                                    <button type="button" onClick={() => alert('此為展示介面，表單尚未串接後端功能。')} className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 transition-all mt-4 flex justify-center items-center gap-2">
+                                    <button type="submit" className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 transition-all mt-4 flex justify-center items-center gap-2">
                                         送出訊息
                                     </button>
                                 </form>
@@ -563,21 +627,25 @@
             const [isAdmin, setIsAdmin] = useState(false);
             const [toastMessage, setToastMessage] = useState("");
             const [showAdminModal, setShowAdminModal] = useState(false);
+            const [showLoginModal, setShowLoginModal] = useState(false);
+            const [selectedNote, setSelectedNote] = useState(null);
 
             useEffect(() => {
-                const unsubscribe = auth.onAuthStateChanged(async (u) => {
+                if (!window.firebaseEnv) return;
+                const { auth, db, appId, onAuthStateChanged, doc, getDoc } = window.firebaseEnv;
+                
+                const unsubscribe = onAuthStateChanged(auth, async (u) => {
                     if (u) {
                         setUser(u);
                         try {
-                            const docRef = db.collection('artifacts').doc(firebaseConfig.appId).collection('users').doc(u.uid);
-                            const doc = await docRef.get();
-                            if (doc.exists && doc.data().role === 'admin') {
+                            const docRef = doc(db, 'artifacts', appId, 'users', u.uid);
+                            const docSnap = await getDoc(docRef);
+                            if (docSnap.exists() && docSnap.data().role === 'admin') {
                                 setIsAdmin(true);
                             } else {
                                 setIsAdmin(false);
                             }
                         } catch (error) {
-                            console.error("驗證管理員身份失敗", error);
                             setIsAdmin(false);
                         }
                     } else {
@@ -593,34 +661,48 @@
                 setTimeout(() => setToastMessage(""), 5000);
             };
 
-            const handleLogin = () => {
-                if(firebaseConfig.apiKey === "AIzaSyBQ3C7vHQeO3u7adXfCaJIc-hOIzEUOQgA" || firebaseConfig.apiKey.includes("YOUR_API_KEY")) {
-                    auth.signInWithPopup(provider).catch((error) => {
-                        showToast("登入提示: 請確認已設定正確的 Firebase 專案與 API Key，目前可能會有網域驗證錯誤。" + error.message);
-                    });
-                } else {
-                    auth.signInWithPopup(provider).catch((error) => {
-                        showToast("登入失敗: " + error.message);
-                    });
+            const handleLoginConfirm = async () => {
+                setShowLoginModal(false);
+                if (!window.firebaseEnv) {
+                    showToast("Firebase 尚未準備好，請稍後再試。");
+                    return;
+                }
+                const { auth, signInAnonymously, signInWithCustomToken } = window.firebaseEnv;
+                try {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                    showToast("登入成功！歡迎回來。");
+                } catch (error) {
+                    showToast("登入失敗，請稍後再試。");
                 }
             };
 
-            const handleLogout = () => {
-                auth.signOut().catch((error) => {
+            const handleLogout = async () => {
+                if (!window.firebaseEnv) return;
+                try {
+                    await window.firebaseEnv.signOut(window.firebaseEnv.auth);
+                    showToast("已成功登出。");
+                } catch (error) {
                     console.error("登出失敗", error);
-                });
+                }
             };
 
             return (
                 <div className="flex flex-col min-h-screen">
                     <Toast message={toastMessage} onClose={() => setToastMessage("")} />
                     <AdminModal isOpen={showAdminModal} onClose={() => setShowAdminModal(false)} />
+                    <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} onConfirm={handleLoginConfirm} />
+                    <NoteModal isOpen={!!selectedNote} onClose={() => setSelectedNote(null)} note={selectedNote} />
+                    
                     <Navbar 
                         isMobileMenuOpen={isMobileMenuOpen} 
                         setIsMobileMenuOpen={setIsMobileMenuOpen}
                         user={user}
                         isAdmin={isAdmin}
-                        onLogin={handleLogin}
+                        onLogin={() => setShowLoginModal(true)}
                         onLogout={handleLogout}
                         onOpenAdmin={() => setShowAdminModal(true)}
                     />
@@ -628,8 +710,8 @@
                         <HeroSection/>
                         <EcosystemSection/>
                         <AwardsSection/>
-                        <AcademySection/>
-                        <ServicesSection/>
+                        <AcademySection onOpenNote={setSelectedNote} />
+                        <ServicesSection showToast={showToast} />
                     </main>
                     <Footer/>
                 </div>
