@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>碳吉 TanJi | 氣候科技與永續創新</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; scroll-behavior: smooth; }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob { animation: blob 7s infinite; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        .blend-multiply { mix-blend-mode: multiply; }
+        
+        .blob-shape-1 { border-radius: 51% 49% 38% 62% / 46% 37% 63% 54%; }
+        .blob-shape-2 { border-radius: 41% 59% 48% 52% / 56% 47% 53% 44%; }
+        .blob-shape-3 { border-radius: 61% 39% 58% 42% / 36% 57% 43% 64%; }
+        
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden selection:bg-emerald-200 selection:text-emerald-900">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const ArrowRight = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>;
+        const Leaf = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 5.2 6.1A7 7 0 0 1 11 20z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>;
+        const Menu = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
+        const X = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
+        const UserIcon = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
+        const BookOpen = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>;
+        const Lightbulb = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>;
+        const Award = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>;
+        const Mail = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>;
+        const CheckCircle = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>;
+        const PlayCircle = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>;
+
+        const solutions = [
+            { id: 'finance', title: '企業綠色融資與碳管理', desc: '專為企業設計的碳排管理儀表板，深度整合 AWS 雲端服務，實現即時碳排運算與數據庫管理。', img: 'images/tanjibaby7.png', tag: 'B2B 企業方案', color: 'from-blue-50 to-indigo-50', textColor: 'text-indigo-700', shape: 'blob-shape-1' },
+            { id: 'nbs', title: '社區微氣候韌性決策', desc: '結合 GIS 風險快篩與 NbS 自然解方，協助社區指認熱點、模擬降溫效益，落實氣候韌性。', img: 'images/tanjibaby6.png', tag: 'B2G 社區治理', color: 'from-emerald-50 to-teal-50', textColor: 'text-emerald-700', shape: 'blob-shape-2' },
+            { id: 'edu', title: '互動教育與地方創生', desc: '開發 CCUS 多人連線模擬器與三峽職人實境遊戲，將嚴肅的環境議題轉化為趣味的數位體驗。', img: 'images/tanjibaby8.png', tag: 'B2C 教育創新', color: 'from-amber-50 to-orange-50', textColor: 'text-amber-700', shape: 'blob-shape-3' }
+        ];
+
+        const academyCards = [
+            { id: 'esg', title: '什麼是 ESG？', desc: 'Environmental(環境)、Social(社會)與Governance(公司治理)，是評估企業永續經營的重要指標，不僅關乎道德，更影響財務表現。', icon: <Leaf size={20}/>, color: 'bg-emerald-100 text-emerald-800' },
+            { id: 'green-finance', title: '綠色融資', desc: '金融機構為友善環境的專案提供資金，如再生能源或低碳建築，並透過貸款利率連結永續績效指標 (SLL)，推動企業轉型。', icon: <Lightbulb size={20}/>, color: 'bg-blue-100 text-blue-800' },
+            { id: 'carbon-tax', title: '碳定價與碳費', desc: '為溫室氣體排放訂定價格，透過市場機制促使企業減碳。台灣將依法對排碳大戶徵收碳費，加速達成淨零目標。', icon: <BookOpen size={20}/>, color: 'bg-purple-100 text-purple-800' },
+            { id: 'nbs-term', title: 'NbS 自然解方', desc: 'Nature-based Solutions，透過保護、復育與管理自然生態系統，來應對氣候變遷與災害風險，同時提升生物多樣性與人類福祉。', icon: <Leaf size={20}/>, color: 'bg-amber-100 text-amber-800' }
+        ];
+
+        const awardsData = [
+            { id: 1, year: '2026', title: '115年度 氣候變遷創意實作競賽', issuer: '教育部', desc: '【晉級全國決賽】以「碳吉：社區微氣候韌性決策平台」參賽，提出結合 GIS 風險快篩與 NbS 自然解方的社區氣候韌性創新方案。', status: 'current' },
+            { id: 2, year: '2026', title: 'IASE 影響力創新獎', issuer: 'IASE', desc: '【入圍青年人才】開發「三峽職人：手路尋蹤」，結合職人性格測驗與在地文化互動網頁，引導線下實體工作坊體驗，促進地方創生。', status: 'done' },
+            { id: 3, year: '2026', title: 'Impact Star 青年影響力啟動賽', issuer: '新北市政府青年局', desc: '【晉級複賽】以推廣三峽地方創生之數位互動體驗專案，獲得評審青睞，展現科技賦能社會影響力。', status: 'done' }
+        ];
+
+        const services = [
+            { id: 'consulting', title: '企業 ESG 數位轉型諮詢', desc: '協助建立內部碳盤查機制與自動化數據儀表板，優化永續報告書產製流程。' },
+            { id: 'community', title: '社區低碳與韌性規劃', desc: '導入 GIS 微氣候分析，協助管委會規劃 NbS 綠化降溫方案與智慧低碳設施。' },
+            { id: 'education', title: '永續互動教育專案開發', desc: '將生硬的環境議題轉化為遊戲化網頁、實境解謎或多元模擬器，擴大影響力。' }
+        ];
+
+        const Navbar = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
+            const [isScrolled, setIsScrolled] = useState(false);
+            useEffect(() => {
+                const handleScroll = () => setIsScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+            return (
+                <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+                    <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                        <div className="font-black text-2xl tracking-tight text-emerald-900 flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+                            <img src="images/tanjibaby.png" alt="TanJi Logo" className="w-8 h-8 object-contain blend-multiply" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+                            <Leaf className="text-emerald-500 hidden" size={28}/>
+                            碳吉 TanJi
+                        </div>
+                        <div className="hidden lg:flex items-center gap-8 font-bold text-sm text-slate-600">
+                            <a href="#ecosystem" className="hover:text-emerald-600 transition-colors">生態系</a>
+                            <a href="#academy" className="hover:text-emerald-600 transition-colors">碳吉小學堂</a>
+                            <a href="#awards" className="hover:text-emerald-600 transition-colors">榮譽實績</a>
+                            <a href="#services" className="hover:text-emerald-600 transition-colors">商業服務</a>
+                        </div>
+                        <div className="hidden lg:flex items-center gap-4">
+                            <button className="flex items-center gap-2 px-5 py-2.5 bg-slate-100 text-slate-700 rounded-full hover:bg-slate-200 transition-colors shadow-sm font-bold text-sm border border-slate-200">
+                                <UserIcon size={16}/> 會員中心
+                            </button>
+                            <a href="#services" className="px-5 py-2.5 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition-colors shadow-md shadow-emerald-500/20 font-bold text-sm">
+                                聯絡合作
+                            </a>
+                        </div>
+                        <button className="lg:hidden p-2 text-slate-600" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                            {isMobileMenuOpen ? <X size={28}/> : <Menu size={28}/>}
+                        </button>
+                    </div>
+                    <div className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[500px] border-t border-slate-100' : 'max-h-0'}`}>
+                        <div className="flex flex-col p-6 gap-4 font-bold text-slate-600">
+                            <a href="#ecosystem" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">生態系</a>
+                            <a href="#academy" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">碳吉小學堂</a>
+                            <a href="#awards" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">榮譽實績</a>
+                            <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">商業服務</a>
+                            <div className="h-px bg-slate-100 my-2"></div>
+                            <button className="flex items-center justify-center gap-2 w-full p-3 bg-slate-100 text-slate-700 rounded-xl">
+                                <UserIcon size={18}/> 會員中心
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const HeroSection = () => {
+            const videoRef = useRef(null);
+            const [showBubble, setShowBubble] = useState(false);
+            const dialogs = ["嗨！永續靠大家！🌱", "點我點我！✨", "一起來減碳吧！🌍", "歡迎來到碳吉宇宙！🚀"];
+            const [bubbleText, setBubbleText] = useState("嗨！我是碳吉寶寶！🌱");
+
+            useEffect(() => {
+                if (videoRef.current) videoRef.current.play().catch(e => console.log(e));
+                setTimeout(() => { setShowBubble(true); setTimeout(() => setShowBubble(false), 3500); }, 1000);
+            }, []);
+
+            const handleMascotClick = () => {
+                if (videoRef.current) { videoRef.current.currentTime = 0; videoRef.current.play(); }
+                setBubbleText(dialogs[Math.floor(Math.random() * dialogs.length)]);
+                setShowBubble(true);
+                setTimeout(() => setShowBubble(false), 3000); 
+            };
+
+            return (
+                <section className="relative pt-32 pb-20 px-6 min-h-[90vh] flex items-center overflow-hidden bg-[#f4faf7]">
+                    <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+                        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+                        <div className="absolute top-[20%] right-[-5%] w-80 h-80 bg-teal-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+                        <div className="absolute bottom-[-10%] left-[20%] w-96 h-96 bg-cyan-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+                    </div>
+                    <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                        <div className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-emerald-200 text-emerald-800 text-xs font-bold mb-6 shadow-sm">
+                                <span className="relative flex h-2 w-2">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                氣候科技生態系
+                            </div>
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-800 tracking-tight leading-[1.15] mb-6">
+                                用科技讓<br className="hidden lg:block"/>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-400">永續觸手可及</span>
+                            </h1>
+                            <p className="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed font-medium">
+                                專為企業、社區與教育機構打造的創新平台。涵蓋綠色金融、碳排管理、氣候韌性與數位互動，讓改變從今天開始。
+                            </p>
+                            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                                <a href="#ecosystem" className="w-full sm:w-auto px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-full shadow-lg shadow-emerald-500/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                                    探索生態系 <ArrowRight size={18}/>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="relative order-1 lg:order-2 flex justify-center items-center h-[350px] sm:h-[450px] lg:h-[600px] w-full">
+                            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-100 to-white/10 rounded-full blur-3xl opacity-60"></div>
+                            <div className="relative w-full max-w-[450px] cursor-pointer group z-20 animate-float" onClick={handleMascotClick}>
+                                <div className={`absolute -top-8 left-1/2 -translate-x-1/2 bg-white px-6 py-3 rounded-2xl shadow-xl border border-emerald-100 transition-all duration-300 z-30 w-max pointer-events-none ${showBubble ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'}`}>
+                                    <span className="text-emerald-800 font-bold text-sm md:text-base">{bubbleText}</span>
+                                    <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 bg-white border-b border-r border-emerald-100 rotate-45"></div>
+                                </div>
+                                <video ref={videoRef} src="videos/tanjibaby_hi.mp4" className="w-full h-auto blend-multiply scale-110 drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 blob-shape-1" muted playsInline poster="images/tanjibaby.png" loop={false}></video>
+                                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-40 h-8 bg-black/5 blur-xl rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const EcosystemSection = () => (
+            <section id="ecosystem" className="py-24 px-6 bg-white relative z-20 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">碳吉宇宙多元發展</h2>
+                        <p className="text-slate-500 font-medium max-w-2xl mx-auto">涵蓋三大核心領域的永續解決方案</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {solutions.map((sol, index) => (
+                            <div key={sol.id} className={`bg-gradient-to-b ${sol.color} rounded-3xl p-8 border border-white shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center cursor-pointer hover:-translate-y-2`}>
+                                <div className={`w-48 h-48 mb-6 relative animate-float overflow-hidden flex items-center justify-center bg-white/40 shadow-inner ${sol.shape}`} style={{animationDelay: `${index * 0.5}s`}}>
+                                    <img src={sol.img} alt={sol.title} className="w-full h-full object-cover blend-multiply transition-transform duration-500 group-hover:scale-110 p-2" onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/400/${sol.textColor.includes('indigo') ? 'e0e7ff/4338ca' : sol.textColor.includes('emerald') ? 'd1fae5/047857' : 'fef3c7/b45309'}?text=TanJi`; }} />
+                                </div>
+                                <div className={`px-3 py-1 rounded-full bg-white/80 backdrop-blur-sm text-[11px] font-bold tracking-wider mb-4 shadow-sm ${sol.textColor}`}>{sol.tag}</div>
+                                <h3 className="text-xl font-bold text-slate-800 mb-3">{sol.title}</h3>
+                                <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">{sol.desc}</p>
+                                <div className="mt-auto w-full pt-4 border-t border-black/5">
+                                    <span className={`inline-flex items-center gap-1 text-sm font-bold opacity-80 group-hover:opacity-100 transition-opacity ${sol.textColor}`}>
+                                        了解更多 <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const AcademySection = () => {
+            const scrollRef = useRef(null);
+            
+            const scroll = (direction) => {
+                if (scrollRef.current) {
+                    const { scrollLeft, clientWidth } = scrollRef.current;
+                    const scrollTo = direction === 'left' ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
+                    scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+                }
+            };
+
+            return (
+                <section id="academy" className="py-24 px-6 bg-gradient-to-b from-white to-emerald-50 overflow-hidden relative">
+                    <div className="absolute top-10 left-10 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl pointer-events-none"></div>
+                    <div className="absolute bottom-10 right-10 w-80 h-80 bg-teal-200/20 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <div className="max-w-7xl mx-auto relative z-10">
+                        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                            <div className="text-left">
+                                <div className="flex items-center gap-2 text-emerald-600 font-bold mb-3 tracking-wider text-sm uppercase">
+                                    <BookOpen size={18} /> Knowledge Base
+                                </div>
+                                <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">碳吉小學堂</h2>
+                                <p className="text-slate-600 font-medium max-w-xl">每天三分鐘，輕鬆掌握 ESG 與永續金融的核心概念，成為綠領人才的起點。</p>
+                            </div>
+                            <div className="hidden md:flex gap-2">
+                                <button onClick={() => scroll('left')} className="p-3 rounded-full bg-white shadow-sm border border-emerald-100 text-emerald-600 hover:bg-emerald-50 transition-colors"><ArrowRight size={20} className="rotate-180" /></button>
+                                <button onClick={() => scroll('right')} className="p-3 rounded-full bg-white shadow-sm border border-emerald-100 text-emerald-600 hover:bg-emerald-50 transition-colors"><ArrowRight size={20} /></button>
+                            </div>
+                        </div>
+                        
+                        <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-8 hide-scrollbar snap-x snap-mandatory">
+                            {academyCards.map((card) => (
+                                <div key={card.id} className="min-w-[300px] md:min-w-[350px] bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 snap-center flex flex-col group cursor-pointer relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-emerald-50 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 shadow-sm ${card.color}`}>
+                                        {card.icon}
+                                    </div>
+                                    <h3 className="text-xl font-bold text-slate-800 mb-3">{card.title}</h3>
+                                    <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">{card.desc}</p>
+                                    <button className="text-left text-sm font-bold text-emerald-600 group-hover:text-emerald-700 mt-auto inline-flex items-center gap-1">
+                                        翻閱筆記 <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
+                                    </button>
+                                </div>
+                            ))}
+                            <div className="min-w-[300px] md:min-w-[350px] bg-emerald-600 p-8 rounded-3xl shadow-md text-white flex flex-col justify-center items-center text-center snap-center relative overflow-hidden group cursor-pointer">
+                                <div className="absolute inset-0 bg-[url('https://placehold.co/400x400/047857/059669?text=pattern')] opacity-20 mix-blend-overlay"></div>
+                                <Lightbulb size={48} className="mb-4 text-emerald-200 group-hover:scale-110 transition-transform duration-500" />
+                                <h3 className="text-2xl font-bold mb-2 relative z-10">探索更多知識</h3>
+                                <p className="text-emerald-100 text-sm mb-6 relative z-10">註冊會員，解鎖完整 ESG 資料庫與測驗</p>
+                                <span className="px-6 py-2 bg-white text-emerald-700 rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-shadow relative z-10">前往知識庫</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const AwardsSection = () => {
+            return (
+                <section id="awards" className="py-24 px-6 bg-slate-50 relative border-t border-slate-200">
+                    <div className="max-w-5xl mx-auto">
+                        <div className="text-center mb-16">
+                            <div className="inline-flex items-center justify-center p-3 bg-amber-100 text-amber-600 rounded-xl mb-4">
+                                <Award size={28} />
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">榮譽與實績</h2>
+                            <p className="text-slate-500 font-medium max-w-2xl mx-auto">碳吉計畫在產官學界獲得的肯定與創新足跡</p>
+                        </div>
+
+                        <div className="space-y-6">
+                            {awardsData.map((award, index) => (
+                                <div key={award.id} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 items-start hover:shadow-md transition-shadow group relative overflow-hidden">
+                                    <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${award.status === 'current' ? 'bg-amber-400' : 'bg-slate-300'}`}></div>
+                                    
+                                    <div className="flex-shrink-0 w-24 h-24 rounded-full bg-slate-50 border-4 border-white shadow-sm flex flex-col items-center justify-center relative z-10">
+                                        <span className={`text-sm font-black ${award.status === 'current' ? 'text-amber-600' : 'text-slate-400'}`}>{award.year}</span>
+                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{award.status === 'current' ? 'NOW' : 'DONE'}</span>
+                                    </div>
+                                    
+                                    <div className="flex-grow pt-2">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <span className="px-2.5 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-md tracking-wider">{award.issuer}</span>
+                                            {award.status === 'current' && <span className="px-2 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-md flex items-center gap-1 animate-pulse"><div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div>進行中</span>}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-emerald-700 transition-colors">{award.title}</h3>
+                                        <p className="text-slate-600 text-sm leading-relaxed">{award.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const ServicesSection = () => {
+            return (
+                <section id="services" className="py-24 px-6 bg-slate-900 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div className="max-w-6xl mx-auto relative z-10">
+                        <div className="grid lg:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">啟動您的<br/><span className="text-emerald-400">永續轉型計畫</span></h2>
+                                <p className="text-slate-400 text-lg mb-10 max-w-lg leading-relaxed">
+                                    碳吉團隊具備溫室氣體盤查、雲端技術與永續專案管理的跨領域專業能量。無論是數位化儀表板建置，或是創新的互動體驗，我們都能提供客製化支援。
+                                </p>
+                                
+                                <div className="space-y-4 mb-10">
+                                    {services.map((svc) => (
+                                        <div key={svc.id} className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                                            <div className="mt-1 flex-shrink-0 text-emerald-400"><CheckCircle size={20} /></div>
+                                            <div>
+                                                <h4 className="text-white font-bold text-lg mb-1">{svc.title}</h4>
+                                                <p className="text-slate-400 text-sm">{svc.desc}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl relative">
+                                <div className="absolute -top-6 -right-6 w-24 h-24 bg-teal-100 rounded-full border-8 border-slate-900 flex items-center justify-center text-teal-600">
+                                    <Mail size={32} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-slate-800 mb-2">聯絡合作</h3>
+                                <p className="text-slate-500 text-sm mb-8">請留下您的需求，團隊專員將盡快與您聯繫。</p>
+                                
+                                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                                    <div className="grid grid-cols-2 gap-5">
+                                        <div className="space-y-1.5">
+                                            <label className="text-xs font-bold text-slate-700 ml-1">聯絡人姓名</label>
+                                            <input type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all" placeholder="Name" />
+                                        </div>
+                                        <div className="space-y-1.5">
+                                            <label className="text-xs font-bold text-slate-700 ml-1">所屬單位/企業</label>
+                                            <input type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all" placeholder="Company" />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-bold text-slate-700 ml-1">聯絡信箱</label>
+                                        <input type="email" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all" placeholder="Email Address" />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-bold text-slate-700 ml-1">合作意向需求</label>
+                                        <select className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all text-slate-600 appearance-none">
+                                            <option value="">選擇服務類型...</option>
+                                            <option value="b2b">企業 ESG 數位轉型諮詢</option>
+                                            <option value="b2g">社區微氣候與韌性規劃</option>
+                                            <option value="b2c">永續互動教育專案開發</option>
+                                            <option value="other">其他合作洽談</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" onClick={() => alert('此為展示介面，表單尚未串接後端功能。')} className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 transition-all mt-4 flex justify-center items-center gap-2">
+                                        送出訊息
+                                    </button>
+                                </form>
+                                
+                                <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                    <span className="text-xs text-slate-400 font-medium">或直接來信專案信箱</span>
+                                    <a href="mailto:tanji2026@gmail.com" className="text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors bg-emerald-50 px-4 py-2 rounded-lg">
+                                        tanji2026@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-slate-950 py-10 px-6 text-center border-t border-slate-800">
+                <div className="flex flex-col items-center justify-center gap-3 mb-6">
+                    <Leaf size={24} className="text-emerald-500" />
+                    <span className="font-bold tracking-widest uppercase text-sm text-slate-300">TanJi Ecosystem Project</span>
+                </div>
+                <div className="flex gap-4 justify-center mb-8">
+                    <a href="#" className="text-slate-500 hover:text-emerald-400 text-xs font-medium transition-colors">隱私權政策</a>
+                    <a href="#" className="text-slate-500 hover:text-emerald-400 text-xs font-medium transition-colors">服務條款</a>
+                </div>
+                <p className="text-slate-600 text-xs font-medium">© 2026 TanJi Project Core Team. All rights reserved.</p>
+            </footer>
+        );
+
+        const App = () => {
+            const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+            return (
+                <div className="flex flex-col min-h-screen">
+                    <Navbar isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen}/>
+                    <main className="flex-grow">
+                        <HeroSection/>
+                        <EcosystemSection/>
+                        <AcademySection/>
+                        <AwardsSection/>
+                        <ServicesSection/>
+                    </main>
+                    <Footer/>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App/>);
+    </script>
+</body>
+</html>
