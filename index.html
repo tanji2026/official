@@ -79,31 +79,99 @@
         const AlertCircle = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
         const Settings = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>;
         const Users = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>;
+        const Globe = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>;
+        const Code = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>;
+        const Database = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>;
 
-        const solutions = [
-            { id: 'finance', title: '企業綠色融資與碳管理', desc: '專為企業設計的碳排管理儀表板，深度整合 AWS 雲端服務，實現即時碳排運算與數據庫管理。', img: 'images/tanjibaby_tech.png', tag: 'B2B 企業方案', color: 'from-blue-50 to-indigo-50', textColor: 'text-indigo-700' },
-            { id: 'nbs', title: '社區微氣候韌性決策', desc: '結合 GIS 風險快篩與 NbS 自然解方，協助社區指認熱點、模擬降溫效益，落實氣候韌性。', img: 'images/tanjibaby6.png', tag: 'B2G 社區治理', color: 'from-emerald-50 to-teal-50', textColor: 'text-emerald-700' },
-            { id: 'edu', title: '互動教育與地方創生', desc: '開發 CCUS 多人連線模擬器與三峽職人實境遊戲，將嚴肅的環境議題轉化為趣味的數位體驗。', img: 'images/tanjibaby8.png', tag: 'B2C 教育創新', color: 'from-amber-50 to-orange-50', textColor: 'text-amber-700' }
-        ];
-
-        const academyCards = [
-            { id: 'esg', title: '什麼是 ESG？', desc: 'Environmental(環境)、Social(社會)與Governance(公司治理)，是評估企業永續經營的重要指標，不僅關乎道德，更影響財務表現。', icon: <Leaf size={20}/>, color: 'bg-emerald-100 text-emerald-800' },
-            { id: 'green-finance', title: '綠色融資', desc: '金融機構為友善環境的專案提供資金，如再生能源或低碳建築，並透過貸款利率連結永續績效指標 (SLL)，推動企業轉型。', icon: <Lightbulb size={20}/>, color: 'bg-blue-100 text-blue-800' },
-            { id: 'carbon-tax', title: '碳定價與碳費', desc: '為溫室氣體排放訂定價格，透過市場機制促使企業減碳。台灣將依法對排碳大戶徵收碳費，加速達成淨零目標。', icon: <BookOpen size={20}/>, color: 'bg-purple-100 text-purple-800' },
-            { id: 'nbs-term', title: 'NbS 自然解方', desc: 'Nature-based Solutions，透過保護、復育與管理自然生態系統，來應對氣候變遷與災害風險，同時提升生物多樣性與人類福祉。', icon: <Leaf size={20}/>, color: 'bg-amber-100 text-amber-800' }
-        ];
+        const uiText = {
+            zh: {
+                nav_ecosystem: "專案實證", nav_awards: "榮譽實績", nav_academy: "碳吉小學堂", nav_services: "合作洽談",
+                hero_title_1: "用科技讓", hero_title_2: "永續觸手可及",
+                hero_subtitle: "源自青年氣候行動的創新專案。結合資料科學與互動體驗，我們正在探索綠色金融、碳排管理與社區韌性的數位解方。",
+                hero_btn: "探索專案",
+                about_title: "關於碳吉 About TanJi",
+                about_desc: "碳吉（TanJi）源於氣候創新競賽的實作專案。發起人現任職於永續顧問團隊，致力將「ESG 永續管理」與「AI 數據應用」結合，並轉化為能落地解決環境問題的氣候科技新創。",
+                eco_title: "核心專案", eco_subtitle: "涵蓋三大核心領域的永續專案實證",
+                eco_tag_1: "企業應用", eco_tag_2: "地方創生與社區", eco_tag_3: "永續互動教育",
+                eco_title_1: "企業綠色融資與碳管理", eco_desc_1: "專為企業設計的碳排管理儀表板，深度整合 AWS 雲端服務，實現即時碳排運算與數據庫管理。",
+                eco_title_2: "社區微氣候韌性決策", eco_desc_2: "結合 GIS 風險快篩與 NbS 自然解方，協助社區指認熱點、模擬降溫效益，落實氣候韌性。",
+                eco_title_3: "互動教育與地方創生", eco_desc_3: "開發 CCUS 多人連線模擬器與三峽職人實境遊戲，將嚴肅的環境議題轉化為趣味的數位體驗。",
+                eco_more: "了解更多",
+                awards_title: "榮譽與實績", awards_subtitle: "從青年競賽出發的創新足跡",
+                awards_platform: "專案平台",
+                academy_title: "碳吉小學堂", academy_subtitle: "每天三分鐘，輕鬆掌握 ESG 與永續金融的核心概念，成為綠領人才的起點。",
+                academy_read: "翻閱筆記", academy_explore: "探索更多知識", academy_register: "註冊會員，解鎖完整 ESG 資料庫", academy_go: "前往知識庫",
+                srv_title_1: "碳吉的", srv_title_2: "未來願景與合作契機",
+                srv_desc: "碳吉團隊具備溫室氣體盤查、雲端技術與永續專案管理的跨領域專業。我們正積極將競賽成果轉化為實際應用，歡迎企業、社區或教育單位與我們交流，共同探索落實永續的可能。",
+                srv_item_1: "企業 ESG 數位轉型探討", srv_desc_1: "探討內部碳盤查機制與自動化數據儀表板的建置可行性。",
+                srv_item_2: "社區低碳與韌性規劃交流", srv_desc_2: "分享 GIS 微氣候分析應用，以及 NbS 綠化降溫方案的實務經驗。",
+                srv_item_3: "永續互動教育專案共創", srv_desc_3: "將生硬的環境議題轉化為遊戲化網頁、實境解謎或多元模擬器。",
+                contact_title: "聯絡我們", contact_subtitle: "請留下您的想法，我們將盡快與您聯繫交流。",
+                contact_name: "聯絡人姓名", contact_company: "所屬單位/企業", contact_email: "聯絡信箱", contact_type: "合作意向",
+                contact_opt_default: "選擇交流類型...", contact_opt_1: "企業 ESG 數位轉型探討", contact_opt_2: "社區微氣候與韌性規劃", contact_opt_3: "永續互動教育專案交流", contact_opt_4: "其他交流探討",
+                contact_submit: "送出訊息", contact_or: "或直接來信",
+                footer_policy: "隱私權政策", footer_terms: "服務條款",
+                admin_title: "TanJi 系統介面展示 (Demo)",
+                admin_stat_1: "累積參與競賽", admin_stat_2: "開發中專案數量", admin_stat_3: "技術整合服務",
+                admin_table_title: "近期關注技術",
+                admin_col_1: "技術類別", admin_col_2: "應用場景", admin_col_3: "狀態",
+                admin_tech_1: "AWS Lambda / DynamoDB", admin_use_1: "碳管理平台即時運算", admin_status_active: "實作中",
+                admin_tech_2: "React / Firebase", admin_use_2: "互動式教育平台建置", admin_status_done: "已上線",
+                login_title: "體驗碳吉圈圈", login_subtitle: "此為系統登入功能展示 (Demo)",
+                login_btn: "登入", login_reg: "註冊新帳號", login_anon: "先以訪客身分體驗",
+                note_hint: "💡 完整內容與隨堂測驗功能，正在開發中！"
+            },
+            en: {
+                nav_ecosystem: "Core Projects", nav_awards: "Awards", nav_academy: "Academy", nav_services: "Co-creation",
+                hero_title_1: "Making Sustainability", hero_title_2: "Accessible via Tech",
+                hero_subtitle: "Innovative projects originating from youth climate actions. Combining data science with interactive experiences, we are exploring digital solutions for green finance, carbon management, and community resilience.",
+                hero_btn: "Explore Projects",
+                about_title: "About TanJi",
+                about_desc: "TanJi originated from practical projects in climate innovation competitions. The founder, currently working in a sustainability consulting team, is dedicated to combining 'ESG Sustainability Management' with 'AI Data Applications', transforming them into a climate tech startup that can implement solutions to environmental issues.",
+                eco_title: "Core Projects", eco_subtitle: "Sustainable project implementations across three core areas",
+                eco_tag_1: "Enterprise Application", eco_tag_2: "Local Revitalization", eco_tag_3: "EdTech",
+                eco_title_1: "Green Finance & Carbon Mgmt", eco_desc_1: "A carbon management dashboard designed for enterprises, deeply integrating AWS cloud services for real-time calculation and database management.",
+                eco_title_2: "Micro-climate Resilience", eco_desc_2: "Combining GIS risk screening and NbS, helping communities identify hotspots and simulate cooling benefits to implement climate resilience.",
+                eco_title_3: "EdTech & Gamification", eco_desc_3: "Developing CCUS multiplayer simulators and Sanxia artisan AR games, transforming serious environmental issues into engaging digital experiences.",
+                eco_more: "Learn More",
+                awards_title: "Awards & Recognitions", awards_subtitle: "Innovative footprints starting from youth competitions",
+                awards_platform: "Project Link",
+                academy_title: "TanJi Academy", academy_subtitle: "3 minutes a day to easily master the core concepts of ESG and sustainable finance.",
+                academy_read: "Read Notes", academy_explore: "Explore More", academy_register: "Register to unlock the full ESG database", academy_go: "Go to Base",
+                srv_title_1: "TanJi's Future Vision", srv_title_2: "& Co-creation Opportunities",
+                srv_desc: "The TanJi team possesses cross-disciplinary expertise in GHG inventory, cloud technology, and sustainable project management. We are actively transforming competition results into practical applications, welcoming enterprises, communities, or educational institutions to communicate with us.",
+                srv_item_1: "ESG Digital Transformation", srv_desc_1: "Exploring the feasibility of internal carbon inventory mechanisms and automated data dashboards.",
+                srv_item_2: "Community Low-Carbon Planning", srv_desc_2: "Sharing practical experiences in GIS micro-climate analysis and NbS greening and cooling solutions.",
+                srv_item_3: "Sustainable EdTech Co-creation", srv_desc_3: "Transforming rigid environmental issues into gamified web pages, reality puzzles, or multi-simulators.",
+                contact_title: "Contact Us", contact_subtitle: "Please leave your thoughts, and we will contact you as soon as possible.",
+                contact_name: "Name", contact_company: "Company/Org", contact_email: "Email", contact_type: "Intention",
+                contact_opt_default: "Select type...", contact_opt_1: "ESG Digital Transformation", contact_opt_2: "Micro-climate Planning", contact_opt_3: "EdTech Co-creation", contact_opt_4: "Other Inquiries",
+                contact_submit: "Send Message", contact_or: "Or email directly",
+                footer_policy: "Privacy Policy", footer_terms: "Terms of Service",
+                admin_title: "TanJi System Interface (Demo)",
+                admin_stat_1: "Competitions Joined", admin_stat_2: "Developing Projects", admin_stat_3: "Tech Integrations",
+                admin_table_title: "Recent Tech Focus",
+                admin_col_1: "Technology", admin_col_2: "Application", admin_col_3: "Status",
+                admin_tech_1: "AWS Lambda / DynamoDB", admin_use_1: "Carbon Mgmt Real-time Calc", admin_status_active: "In Progress",
+                admin_tech_2: "React / Firebase", admin_use_2: "Interactive EdTech Platform", admin_status_done: "Deployed",
+                login_title: "Experience TanJi", login_subtitle: "This is a system login function demonstration (Demo)",
+                login_btn: "Login", login_reg: "Register New Account", login_anon: "Try as Guest First",
+                note_hint: "💡 Full content and quiz features are currently under development!"
+            }
+        };
 
         const awardsData = [
-            { id: 1, year: '2026', title: '115年度 氣候變遷創意實作競賽', issuer: '教育部', desc: '【晉級全國決賽】以「碳吉：社區微氣候韌性決策平台」參賽，提出結合 GIS 風險快篩與 NbS 自然解方的社區氣候韌性創新方案。', status: 'current', platformLink: '#', awardLink: '#' },
-            { id: 2, year: '2026', title: 'IASE 影響力創新獎', issuer: 'IASE', desc: '【入圍青年人才】開發「三峽職人：手路尋蹤」，結合職人性格測驗與在地文化互動網頁，引導線下實體工作坊體驗，促進地方創生。', status: 'done', platformLink: '#', awardLink: '#' },
-            { id: 3, year: '2026', title: 'Impact Star 青年影響力啟動賽', issuer: '新北市政府青年局', desc: '【晉級複賽】以推廣三峽地方創生之數位互動體驗專案，獲得評審青睞，展現科技賦能社會影響力。', status: 'done', platformLink: '#', awardLink: '#' },
-            { id: 4, year: '2025', title: 'SDGs 永續發展目標實踐獎', issuer: '台灣永續能源研究基金會', desc: '【優選】表彰團隊在推動教育創新及地方社區韌性培力上的卓越貢獻，落實 SDGs 多項指標。', status: 'done', platformLink: '#', awardLink: '#' }
+            { id: 1, year: '2026', title: { zh: '115年度 氣候變遷創意實作競賽', en: '2026 Climate Change Creative Practice' }, issuer: { zh: '教育部 / 中央氣象署', en: 'MOE / CWA' }, desc: { zh: '【榮獲 氣候應用特別獎】以「碳吉：社區微氣候韌性決策平台」參賽，提出結合 GIS 風險快篩與 NbS 自然解方的社區氣候韌性創新方案。', en: '[Won Special Award] Proposed a community climate resilience innovation plan combining GIS risk screening and NbS.' }, status: 'current', platformLink: 'https://tanji2026.github.io/nbs/' },
+            { id: 2, year: '2026', title: { zh: '第二屆 CCUS 創意教案徵選活動', en: '2nd CCUS Creative Lesson Plan' }, issuer: { zh: '中央大學', en: 'NCU' }, desc: { zh: '【榮獲 優等獎】開發「碳吉：CCUS 淨零決策模擬器」，藉由角色分權與即時互動遊戲設計，成功轉化嚴肅技術為沉浸式教案。', en: '[Won Excellence Award] Developed "TanJi: CCUS Net Zero Simulator", transforming serious technology into immersive teaching plans.' }, status: 'done', platformLink: 'https://tanji2026.github.io/ccus/' },
+            { id: 3, year: '2026', title: { zh: '新北市青年氣候行動徵件', en: '2026 NTPC Youth Climate Action' }, issuer: { zh: '新北市政府環保局', en: 'NTPC EPB' }, desc: { zh: '【進入決選】以「碳吉圈圈：在地微型循環網絡」入圍。方案結合 IoT 物理感測與 O2O 點收機制，打造零門檻之循環生態系。', en: '[Shortlisted] Recognized for "TanJi Loop: Local Micro-Circular Network", combining IoT and O2O for a circular ecosystem.' }, status: 'done', platformLink: 'https://tanji2026.github.io/tanji-loop/' },
+            { id: 4, year: '2026', title: { zh: 'Impact Star 青年影響力啟動賽', en: '2026 Impact Star' }, issuer: { zh: '新北市政府青年局', en: 'NTPC Youth Dept.' }, desc: { zh: '【晉級複賽】開發「三峽職人：手路尋蹤」，結合職人性格測驗與在地文化互動網頁，引導線下實體工作坊體驗，促進地方創生。', en: '[Semi-Finalist] Developed an interactive web experience promoting local revitalization in Sanxia.' }, status: 'done', platformLink: 'https://tanji2026.github.io/sanxia/' }
         ];
 
-        const services = [
-            { id: 'consulting', title: '企業 ESG 數位轉型諮詢', desc: '協助建立內部碳盤查機制與自動化數據儀表板，優化永續報告書產製流程。' },
-            { id: 'community', title: '社區低碳與韌性規劃', desc: '導入 GIS 微氣候分析，協助管委會規劃 NbS 綠化降溫方案與智慧低碳設施。' },
-            { id: 'education', title: '永續互動教育專案開發', desc: '將生硬的環境議題轉化為遊戲化網頁、實境解謎或多元模擬器，擴大影響力。' }
+        const academyCardsData = [
+            { id: 'esg', title: { zh: '什麼是 ESG？', en: 'What is ESG?' }, desc: { zh: 'Environmental(環境)、Social(社會)與Governance(公司治理)，是評估企業永續經營的重要指標，不僅關乎道德，更影響財務表現。', en: "Environmental, Social, and Governance are crucial metrics for evaluating a company's sustainable operations, impacting both ethics and financial performance." }, icon: <Leaf size={20}/>, color: 'bg-emerald-100 text-emerald-800' },
+            { id: 'green-finance', title: { zh: '綠色融資', en: 'Green Finance' }, desc: { zh: '金融機構為友善環境的專案提供資金，如再生能源或低碳建築，並透過貸款利率連結永續績效指標 (SLL)，推動企業轉型。', en: "Financial institutions fund eco-friendly projects, like renewable energy, pushing corporate transformation via Sustainability Linked Loans (SLL)." }, icon: <Lightbulb size={20}/>, color: 'bg-blue-100 text-blue-800' },
+            { id: 'carbon-tax', title: { zh: '碳定價與碳費', en: 'Carbon Pricing' }, desc: { zh: '為溫室氣體排放訂定價格，透過市場機制促使企業減碳。台灣將依法對排碳大戶徵收碳費，加速達成淨零目標。', en: "Pricing greenhouse gas emissions to drive carbon reduction through market mechanisms. Taiwan is implementing carbon fees to accelerate Net Zero goals." }, icon: <BookOpen size={20}/>, color: 'bg-purple-100 text-purple-800' },
+            { id: 'nbs-term', title: { zh: 'NbS 自然解方', en: 'NbS' }, desc: { zh: 'Nature-based Solutions，透過保護、復育與管理自然生態系統，來應對氣候變遷與災害風險，同時提升生物多樣性與人類福祉。', en: "Nature-based Solutions address climate change and disaster risks through the protection, restoration, and management of natural ecosystems." }, icon: <Leaf size={20}/>, color: 'bg-amber-100 text-amber-800' }
         ];
 
         const Toast = ({ message, onClose }) => {
@@ -121,7 +189,7 @@
             );
         };
 
-        const LoginModal = ({ isOpen, onClose, onConfirm }) => {
+        const LoginModal = ({ isOpen, onClose, onConfirm, t }) => {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [errorMsg, setErrorMsg] = useState('');
@@ -146,30 +214,30 @@
                                 <img src="images/tanjibaby.png" alt="TanJi" className="w-full h-full object-cover" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
                                 <UserIcon size={32} className="hidden" />
                             </div>
-                            <h3 className="text-2xl font-black text-slate-800 break-words">登入碳吉圈圈</h3>
-                            <p className="text-sm text-slate-500 font-bold mt-1 break-words">建立專屬的永續循環履歷</p>
+                            <h3 className="text-2xl font-black text-slate-800 break-words">{t.login_title}</h3>
+                            <p className="text-sm text-slate-500 font-bold mt-1 break-words">{t.login_subtitle}</p>
                         </div>
                         
                         {errorMsg && <div className="bg-red-50 text-red-500 text-xs font-bold p-3 rounded-xl mb-4 text-center border border-red-100 break-words">{errorMsg}</div>}
                         
                         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleSubmit('login'); }}>
-                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="電子郵件" className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 text-base font-bold text-slate-700 focus:border-emerald-500 focus:outline-none transition-colors" />
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="密碼" className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 text-base font-bold text-slate-700 focus:border-emerald-500 focus:outline-none transition-colors" />
+                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 text-base font-bold text-slate-700 focus:border-emerald-500 focus:outline-none transition-colors" />
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 text-base font-bold text-slate-700 focus:border-emerald-500 focus:outline-none transition-colors" />
                             
                             <button type="submit" className="w-full bg-emerald-600 text-white rounded-xl py-3.5 font-bold text-lg hover:bg-emerald-700 transition-colors mt-2 break-words shadow-lg shadow-emerald-500/30">
-                                登入
+                                {t.login_btn}
                             </button>
                             <button type="button" onClick={() => handleSubmit('register')} className="w-full bg-white border-2 border-emerald-100 text-emerald-700 rounded-xl py-3 font-bold text-lg hover:bg-emerald-50 transition-colors break-words">
-                                註冊新帳號
+                                {t.login_reg}
                             </button>
                             
                             <div className="relative flex items-center justify-center w-full py-2">
                                 <div className="border-t border-slate-200 w-full"></div>
-                                <span className="bg-white px-4 text-xs font-bold text-slate-400 absolute whitespace-nowrap">或者</span>
+                                <span className="bg-white px-4 text-xs font-bold text-slate-400 absolute whitespace-nowrap">OR</span>
                             </div>
                             
                             <button type="button" onClick={() => handleSubmit('anon')} className="w-full bg-slate-800 text-white rounded-xl py-3 font-bold text-base hover:bg-slate-700 transition-colors break-words">
-                                先以訪客身分體驗
+                                {t.login_anon}
                             </button>
                         </form>
                     </div>
@@ -177,7 +245,7 @@
             );
         };
 
-        const NoteModal = ({ isOpen, onClose, note }) => {
+        const NoteModal = ({ isOpen, onClose, note, t, lang }) => {
             if (!isOpen || !note) return null;
             return (
                 <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[150] flex items-center justify-center p-4">
@@ -187,25 +255,25 @@
                                 <div className={`p-2 bg-white rounded-xl shadow-sm ${note.color.split(' ')[1]}`}>
                                     {note.icon}
                                 </div>
-                                <h3 className="text-xl font-black text-slate-800">{note.title}</h3>
+                                <h3 className="text-xl font-black text-slate-800">{note.title[lang]}</h3>
                             </div>
                             <button onClick={onClose} className="text-slate-500 hover:text-slate-800 bg-white/50 p-2 rounded-full"><X size={20}/></button>
                         </div>
                         <div className="p-8">
-                            <p className="text-slate-600 leading-relaxed text-lg mb-6">{note.desc}</p>
-                            <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-sm text-slate-500">
-                                💡 完整內容與隨堂測驗僅開放給註冊會員使用，快去登入解鎖吧！
+                            <p className="text-slate-600 leading-relaxed text-lg mb-6">{note.desc[lang]}</p>
+                            <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-sm text-slate-500 font-bold">
+                                {t.note_hint}
                             </div>
                         </div>
                         <div className="p-4 border-t border-slate-100 bg-slate-50 flex justify-end">
-                            <button onClick={onClose} className="px-6 py-2 bg-slate-800 text-white rounded-full font-bold text-sm hover:bg-slate-900">確認</button>
+                            <button onClick={onClose} className="px-6 py-2 bg-slate-800 text-white rounded-full font-bold text-sm hover:bg-slate-900">OK</button>
                         </div>
                     </div>
                 </div>
             );
         };
 
-        const AdminModal = ({ isOpen, onClose }) => {
+        const AdminModal = ({ isOpen, onClose, t }) => {
             if (!isOpen) return null;
             return (
                 <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[150] flex items-center justify-center p-4">
@@ -215,63 +283,57 @@
                                 <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
                                     <Settings size={20} />
                                 </div>
-                                <h3 className="text-xl font-black text-slate-800">TanJi 系統管理員後台</h3>
+                                <h3 className="text-xl font-black text-slate-800">{t.admin_title}</h3>
                             </div>
                             <button onClick={onClose} className="text-slate-400 hover:text-slate-600 p-2"><X size={24}/></button>
                         </div>
                         <div className="p-6 overflow-y-auto flex-grow bg-slate-50">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
-                                    <div className="p-4 bg-blue-50 text-blue-500 rounded-xl"><Users size={24}/></div>
+                                    <div className="p-4 bg-blue-50 text-blue-500 rounded-xl"><Award size={24}/></div>
                                     <div>
-                                        <div className="text-sm text-slate-500 font-bold mb-1">總註冊用戶</div>
-                                        <div className="text-2xl font-black text-slate-800">1,248</div>
+                                        <div className="text-sm text-slate-500 font-bold mb-1">{t.admin_stat_1}</div>
+                                        <div className="text-2xl font-black text-slate-800">4</div>
                                     </div>
                                 </div>
                                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
-                                    <div className="p-4 bg-emerald-50 text-emerald-500 rounded-xl"><BookOpen size={24}/></div>
+                                    <div className="p-4 bg-emerald-50 text-emerald-500 rounded-xl"><Lightbulb size={24}/></div>
                                     <div>
-                                        <div className="text-sm text-slate-500 font-bold mb-1">知識庫文章數</div>
-                                        <div className="text-2xl font-black text-slate-800">42</div>
+                                        <div className="text-sm text-slate-500 font-bold mb-1">{t.admin_stat_2}</div>
+                                        <div className="text-2xl font-black text-slate-800">5</div>
                                     </div>
                                 </div>
                                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
-                                    <div className="p-4 bg-amber-50 text-amber-500 rounded-xl"><Mail size={24}/></div>
+                                    <div className="p-4 bg-amber-50 text-amber-500 rounded-xl"><Code size={24}/></div>
                                     <div>
-                                        <div className="text-sm text-slate-500 font-bold mb-1">待處理合作需求</div>
-                                        <div className="text-2xl font-black text-slate-800">7</div>
+                                        <div className="text-sm text-slate-500 font-bold mb-1">{t.admin_stat_3}</div>
+                                        <div className="text-2xl font-black text-slate-800">12+</div>
                                     </div>
                                 </div>
                             </div>
                             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                                 <div className="p-5 border-b border-slate-100">
-                                    <h4 className="font-bold text-slate-800">最新合作表單</h4>
+                                    <h4 className="font-bold text-slate-800">{t.admin_table_title}</h4>
                                 </div>
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-left text-sm text-slate-600">
                                         <thead className="bg-slate-50 text-slate-500 font-bold">
                                             <tr>
-                                                <th className="px-6 py-4">日期</th>
-                                                <th className="px-6 py-4">姓名</th>
-                                                <th className="px-6 py-4">單位</th>
-                                                <th className="px-6 py-4">需求類型</th>
-                                                <th className="px-6 py-4">狀態</th>
+                                                <th className="px-6 py-4">{t.admin_col_1}</th>
+                                                <th className="px-6 py-4">{t.admin_col_2}</th>
+                                                <th className="px-6 py-4">{t.admin_col_3}</th>
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-slate-100">
                                             <tr className="hover:bg-slate-50">
-                                                <td className="px-6 py-4">2026-05-18</td>
-                                                <td className="px-6 py-4 font-bold text-slate-800">陳經理</td>
-                                                <td className="px-6 py-4">綠色科技股份有限公司</td>
-                                                <td className="px-6 py-4">企業 ESG 數位轉型</td>
-                                                <td className="px-6 py-4"><span className="px-2 py-1 bg-amber-100 text-amber-700 rounded-md text-xs font-bold">待處理</span></td>
+                                                <td className="px-6 py-4 font-bold text-slate-800 flex items-center gap-2"><Database size={16} className="text-blue-500"/> {t.admin_tech_1}</td>
+                                                <td className="px-6 py-4">{t.admin_use_1}</td>
+                                                <td className="px-6 py-4"><span className="px-2 py-1 bg-amber-100 text-amber-700 rounded-md text-xs font-bold">{t.admin_status_active}</span></td>
                                             </tr>
                                             <tr className="hover:bg-slate-50">
-                                                <td className="px-6 py-4">2026-05-17</td>
-                                                <td className="px-6 py-4 font-bold text-slate-800">林校長</td>
-                                                <td className="px-6 py-4">新北市立實驗中學</td>
-                                                <td className="px-6 py-4">永續互動教育</td>
-                                                <td className="px-6 py-4"><span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md text-xs font-bold">已聯絡</span></td>
+                                                <td className="px-6 py-4 font-bold text-slate-800 flex items-center gap-2"><Code size={16} className="text-emerald-500"/> {t.admin_tech_2}</td>
+                                                <td className="px-6 py-4">{t.admin_use_2}</td>
+                                                <td className="px-6 py-4"><span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md text-xs font-bold">{t.admin_status_done}</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -283,7 +345,7 @@
             );
         };
 
-        const Navbar = ({ isMobileMenuOpen, setIsMobileMenuOpen, user, isAdmin, onLogin, onLogout, onOpenAdmin }) => {
+        const Navbar = ({ isMobileMenuOpen, setIsMobileMenuOpen, user, isAdmin, onLogin, onLogout, onOpenAdmin, lang, toggleLang, t }) => {
             const [isScrolled, setIsScrolled] = useState(false);
             const [showUserMenu, setShowUserMenu] = useState(false);
 
@@ -302,41 +364,44 @@
                             碳吉 TanJi
                         </div>
                         <div className="hidden lg:flex items-center gap-8 font-bold text-sm text-slate-600">
-                            <a href="#ecosystem" className="hover:text-emerald-600 transition-colors">永續解決方案</a>
-                            <a href="#awards" className="hover:text-emerald-600 transition-colors">榮譽實績</a>
-                            <a href="#academy" className="hover:text-emerald-600 transition-colors">碳吉小學堂</a>
-                            <a href="#services" className="hover:text-emerald-600 transition-colors">商業服務</a>
+                            <a href="#ecosystem" className="hover:text-emerald-600 transition-colors">{t.nav_ecosystem}</a>
+                            <a href="#awards" className="hover:text-emerald-600 transition-colors">{t.nav_awards}</a>
+                            <a href="#academy" className="hover:text-emerald-600 transition-colors">{t.nav_academy}</a>
+                            <a href="#services" className="hover:text-emerald-600 transition-colors">{t.nav_services}</a>
                         </div>
                         <div className="hidden lg:flex items-center gap-4 relative">
+                            <button 
+                                onClick={toggleLang}
+                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold transition-all border border-slate-200"
+                            >
+                                <Globe size={14} />
+                                <span>{lang === 'zh' ? 'EN' : '繁中'}</span>
+                            </button>
                             {user ? (
                                 <div className="relative">
                                     <button onClick={() => setShowUserMenu(!showUserMenu)} className="flex items-center gap-2 px-4 py-1.5 bg-white text-slate-700 rounded-full hover:bg-slate-50 transition-colors shadow-sm font-bold text-sm border border-slate-200">
                                         <div className="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center overflow-hidden">
                                             {user.photoURL ? <img src={user.photoURL} alt="Avatar" className="w-full h-full object-cover"/> : <UserIcon size={14} />}
                                         </div>
-                                        {user.displayName || '使用者'}
+                                        {user.displayName || 'User'}
                                     </button>
                                     {showUserMenu && (
                                         <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 border border-slate-100 flex flex-col overflow-hidden">
                                             <span className="px-4 py-3 text-xs text-slate-400 border-b border-slate-100 mb-1 truncate bg-slate-50">{user.email || 'guest@tanji.com'}</span>
                                             {isAdmin && (
                                                 <button onClick={() => { onOpenAdmin(); setShowUserMenu(false); }} className="px-4 py-2.5 text-sm text-left text-emerald-700 hover:bg-emerald-50 font-bold transition-colors border-b border-slate-100 flex items-center gap-2">
-                                                    <Settings size={14}/> 管理後台
+                                                    <Settings size={14}/> Dashboard
                                                 </button>
                                             )}
-                                            <button className="px-4 py-2.5 text-sm text-left text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium transition-colors">會員中心</button>
-                                            <button onClick={() => { onLogout(); setShowUserMenu(false); }} className="px-4 py-2.5 text-sm text-left text-red-600 hover:bg-red-50 font-medium transition-colors">登出</button>
+                                            <button onClick={() => { onLogout(); setShowUserMenu(false); }} className="px-4 py-2.5 text-sm text-left text-red-600 hover:bg-red-50 font-medium transition-colors">Logout</button>
                                         </div>
                                     )}
                                 </div>
                             ) : (
                                 <button onClick={onLogin} className="flex items-center gap-2 px-5 py-2.5 bg-slate-100 text-slate-700 rounded-full hover:bg-slate-200 transition-colors shadow-sm font-bold text-sm border border-slate-200">
-                                    <UserIcon size={16}/> 會員登入
+                                    <UserIcon size={16}/> Login
                                 </button>
                             )}
-                            <a href="#services" className="px-5 py-2.5 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition-colors shadow-md shadow-emerald-500/20 font-bold text-sm">
-                                聯絡合作
-                            </a>
                         </div>
                         <button className="lg:hidden p-2 text-slate-600" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                             {isMobileMenuOpen ? <X size={28}/> : <Menu size={28}/>}
@@ -344,10 +409,13 @@
                     </div>
                     <div className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[600px] border-t border-slate-100' : 'max-h-0'}`}>
                         <div className="flex flex-col p-6 gap-4 font-bold text-slate-600">
-                            <a href="#ecosystem" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">永續解決方案</a>
-                            <a href="#awards" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">榮譽實績</a>
-                            <a href="#academy" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">碳吉小學堂</a>
-                            <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">商業服務</a>
+                            <a href="#ecosystem" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">{t.nav_ecosystem}</a>
+                            <a href="#awards" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">{t.nav_awards}</a>
+                            <a href="#academy" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">{t.nav_academy}</a>
+                            <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg">{t.nav_services}</a>
+                            <button onClick={() => { toggleLang(); setIsMobileMenuOpen(false); }} className="p-2 text-left hover:text-emerald-600 hover:bg-emerald-50 rounded-lg flex items-center gap-2">
+                                <Globe size={16} /> {lang === 'zh' ? 'Switch to English' : '切換至繁體中文'}
+                            </button>
                             <div className="h-px bg-slate-100 my-2"></div>
                             {user ? (
                                 <div className="flex flex-col gap-2">
@@ -356,21 +424,20 @@
                                             {user.photoURL ? <img src={user.photoURL} alt="Avatar" className="w-full h-full object-cover"/> : <UserIcon size={20} />}
                                         </div>
                                         <div className="flex flex-col overflow-hidden">
-                                            <span className="text-sm truncate">{user.displayName || '使用者'}</span>
+                                            <span className="text-sm truncate">{user.displayName || 'User'}</span>
                                             <span className="text-xs text-slate-400 font-normal truncate">{user.email || 'guest@tanji.com'}</span>
                                         </div>
                                     </div>
                                     {isAdmin && (
                                         <button onClick={() => { onOpenAdmin(); setIsMobileMenuOpen(false); }} className="w-full p-3 bg-slate-800 hover:bg-slate-900 transition-colors text-white rounded-xl font-bold flex justify-center items-center gap-2">
-                                            <Settings size={16}/> 管理後台
+                                            <Settings size={16}/> Dashboard
                                         </button>
                                     )}
-                                    <button className="w-full p-3 bg-emerald-50 hover:bg-emerald-100 transition-colors text-emerald-700 rounded-xl font-bold">會員中心</button>
-                                    <button onClick={() => { onLogout(); setIsMobileMenuOpen(false); }} className="w-full p-3 bg-red-50 hover:bg-red-100 transition-colors text-red-600 rounded-xl font-bold">登出</button>
+                                    <button onClick={() => { onLogout(); setIsMobileMenuOpen(false); }} className="w-full p-3 bg-red-50 hover:bg-red-100 transition-colors text-red-600 rounded-xl font-bold">Logout</button>
                                 </div>
                             ) : (
                                 <button onClick={() => { onLogin(); setIsMobileMenuOpen(false); }} className="flex items-center justify-center gap-2 w-full p-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors">
-                                    <UserIcon size={18}/> 會員登入
+                                    <UserIcon size={18}/> Login
                                 </button>
                             )}
                         </div>
@@ -379,7 +446,7 @@
             );
         };
 
-        const HeroSection = () => {
+        const HeroSection = ({ t }) => {
             const videoRef = useRef(null);
             const [showBubble, setShowBubble] = useState(false);
             const dialogs = ["嗨！永續靠大家！🌱", "點我點我！✨", "一起來減碳吧！🌍", "歡迎來到碳吉宇宙！🚀"];
@@ -398,7 +465,7 @@
             };
 
             return (
-                <section className="relative pt-32 pb-20 px-6 min-h-[90vh] flex items-center overflow-hidden bg-[#f4faf7]">
+                <section className="relative pt-32 pb-20 px-6 min-h-[90vh] flex flex-col justify-center overflow-hidden bg-[#f4faf7]">
                     <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                         <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
                         <div className="absolute top-[20%] right-[-5%] w-80 h-80 bg-teal-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
@@ -411,18 +478,18 @@
                                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                                 </span>
-                                氣候科技生態系
+                                Climate Tech Ecosystem
                             </div>
                             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-800 tracking-tight leading-[1.15] mb-6">
-                                用科技讓<br className="hidden lg:block"/>
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-400">永續觸手可及</span>
+                                {t.hero_title_1}<br className="hidden lg:block"/>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-400">{t.hero_title_2}</span>
                             </h1>
                             <p className="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed font-medium">
-                                專為企業、社區與教育機構打造的創新平台。涵蓋綠色金融、碳排管理、氣候韌性與數位互動，讓改變從今天開始。
+                                {t.hero_subtitle}
                             </p>
                             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                                 <a href="#ecosystem" className="w-full sm:w-auto px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-full shadow-lg shadow-emerald-500/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
-                                    探索生態系 <ArrowRight size={18}/>
+                                    {t.hero_btn} <ArrowRight size={18}/>
                                 </a>
                             </div>
                         </div>
@@ -438,39 +505,54 @@
                             </div>
                         </div>
                     </div>
+                    <div className="max-w-4xl mx-auto mt-20 relative z-10 bg-white/70 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white shadow-sm">
+                        <h3 className="text-sm font-bold text-emerald-700 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <Leaf size={16}/> {t.about_title}
+                        </h3>
+                        <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
+                            {t.about_desc}
+                        </p>
+                    </div>
                 </section>
             );
         };
 
-        const EcosystemSection = () => (
-            <section id="ecosystem" className="py-24 px-6 bg-white relative z-20 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">永續解決方案</h2>
-                        <p className="text-slate-500 font-medium max-w-2xl mx-auto">涵蓋三大核心領域的永續解決方案</p>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {solutions.map((sol, index) => (
-                            <div key={sol.id} className={`bg-gradient-to-b ${sol.color} rounded-3xl p-8 border border-white shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center cursor-pointer hover:-translate-y-2`}>
-                                <div className={`w-48 h-48 mb-6 relative animate-float overflow-hidden flex items-center justify-center bg-white shadow-inner rounded-full p-2`} style={{animationDelay: `${index * 0.5}s`}}>
-                                    <img src={sol.img} alt={sol.title} className="w-full h-full object-cover rounded-full blend-multiply transition-transform duration-500 group-hover:scale-110" onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/400/${sol.textColor.includes('indigo') ? 'e0e7ff/4338ca' : sol.textColor.includes('emerald') ? 'd1fae5/047857' : 'fef3c7/b45309'}?text=TanJi`; }} />
+        const EcosystemSection = ({ t }) => {
+            const solutions = [
+                { id: 'finance', title: t.eco_title_1, desc: t.eco_desc_1, img: 'images/tanjibaby_tech.png', tag: t.eco_tag_1, color: 'from-blue-50 to-indigo-50', textColor: 'text-indigo-700' },
+                { id: 'nbs', title: t.eco_title_2, desc: t.eco_desc_2, img: 'images/tanjibaby6.png', tag: t.eco_tag_2, color: 'from-emerald-50 to-teal-50', textColor: 'text-emerald-700' },
+                { id: 'edu', title: t.eco_title_3, desc: t.eco_desc_3, img: 'images/tanjibaby8.png', tag: t.eco_tag_3, color: 'from-amber-50 to-orange-50', textColor: 'text-amber-700' }
+            ];
+            return (
+                <section id="ecosystem" className="py-24 px-6 bg-white relative z-20 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">{t.eco_title}</h2>
+                            <p className="text-slate-500 font-medium max-w-2xl mx-auto">{t.eco_subtitle}</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {solutions.map((sol, index) => (
+                                <div key={sol.id} className={`bg-gradient-to-b ${sol.color} rounded-3xl p-8 border border-white shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center cursor-pointer hover:-translate-y-2`}>
+                                    <div className={`w-48 h-48 mb-6 relative animate-float overflow-hidden flex items-center justify-center bg-white shadow-inner rounded-full p-2`} style={{animationDelay: `${index * 0.5}s`}}>
+                                        <img src={sol.img} alt={sol.title} className="w-full h-full object-cover rounded-full blend-multiply transition-transform duration-500 group-hover:scale-110" onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/400/${sol.textColor.includes('indigo') ? 'e0e7ff/4338ca' : sol.textColor.includes('emerald') ? 'd1fae5/047857' : 'fef3c7/b45309'}?text=TanJi`; }} />
+                                    </div>
+                                    <div className={`px-3 py-1 rounded-full bg-white/80 backdrop-blur-sm text-[11px] font-bold tracking-wider mb-4 shadow-sm ${sol.textColor}`}>{sol.tag}</div>
+                                    <h3 className="text-xl font-bold text-slate-800 mb-3">{sol.title}</h3>
+                                    <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">{sol.desc}</p>
+                                    <div className="mt-auto w-full pt-4 border-t border-black/5">
+                                        <span className={`inline-flex items-center gap-1 text-sm font-bold opacity-80 group-hover:opacity-100 transition-opacity ${sol.textColor}`}>
+                                            {t.eco_more} <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className={`px-3 py-1 rounded-full bg-white/80 backdrop-blur-sm text-[11px] font-bold tracking-wider mb-4 shadow-sm ${sol.textColor}`}>{sol.tag}</div>
-                                <h3 className="text-xl font-bold text-slate-800 mb-3">{sol.title}</h3>
-                                <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">{sol.desc}</p>
-                                <div className="mt-auto w-full pt-4 border-t border-black/5">
-                                    <span className={`inline-flex items-center gap-1 text-sm font-bold opacity-80 group-hover:opacity-100 transition-opacity ${sol.textColor}`}>
-                                        了解更多 <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
-        );
+                </section>
+            );
+        };
 
-        const AwardsSection = () => {
+        const AwardsSection = ({ t, lang }) => {
             return (
                 <section id="awards" className="py-24 px-6 bg-slate-50 relative border-t border-slate-200">
                     <div className="max-w-5xl mx-auto">
@@ -478,8 +560,8 @@
                             <div className="inline-flex items-center justify-center p-3 bg-amber-100 text-amber-600 rounded-xl mb-4">
                                 <Award size={28} />
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">榮譽與實績</h2>
-                            <p className="text-slate-500 font-medium max-w-2xl">碳吉計畫在產官學界獲得的肯定與創新足跡</p>
+                            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">{t.awards_title}</h2>
+                            <p className="text-slate-500 font-medium max-w-2xl">{t.awards_subtitle}</p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -492,19 +574,16 @@
                                         </div>
                                         <div className="flex-grow pt-1">
                                             <div className="flex flex-wrap items-center gap-2 mb-2">
-                                                <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-md tracking-wider">{award.issuer}</span>
-                                                {award.status === 'current' && <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-md flex items-center gap-1 animate-pulse"><div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div>進行中</span>}
+                                                <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-md tracking-wider">{award.issuer[lang]}</span>
+                                                {award.status === 'current' && <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-md flex items-center gap-1 animate-pulse"><div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div></span>}
                                             </div>
-                                            <h3 className="text-lg font-bold text-slate-800 group-hover:text-emerald-700 transition-colors leading-tight">{award.title}</h3>
+                                            <h3 className="text-lg font-bold text-slate-800 group-hover:text-emerald-700 transition-colors leading-tight">{award.title[lang]}</h3>
                                         </div>
                                     </div>
-                                    <p className="text-slate-600 text-sm leading-relaxed flex-grow">{award.desc}</p>
+                                    <p className="text-slate-600 text-sm leading-relaxed flex-grow">{award.desc[lang]}</p>
                                     <div className="flex gap-2 mt-2 pt-4 border-t border-slate-50">
-                                        <a href={award.platformLink} className="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg text-xs font-bold transition-colors">
-                                            專案平台 <ExternalLink size={12}/>
-                                        </a>
-                                        <a href={award.awardLink} className="inline-flex items-center gap-1 px-3 py-1.5 bg-amber-50 text-amber-700 hover:bg-amber-100 rounded-lg text-xs font-bold transition-colors">
-                                            得獎證明 <ExternalLink size={12}/>
+                                        <a href={award.platformLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg text-xs font-bold transition-colors">
+                                            {t.awards_platform} <ExternalLink size={12}/>
                                         </a>
                                     </div>
                                 </div>
@@ -515,7 +594,7 @@
             );
         };
 
-        const AcademySection = ({ onOpenNote }) => {
+        const AcademySection = ({ onOpenNote, t, lang }) => {
             const scrollRef = useRef(null);
             
             return (
@@ -528,32 +607,32 @@
                             <div className="inline-flex items-center justify-center p-3 bg-emerald-100 text-emerald-600 rounded-xl mb-4">
                                 <BookOpen size={28} />
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">碳吉小學堂</h2>
-                            <p className="text-slate-600 font-medium max-w-2xl">每天三分鐘，輕鬆掌握 ESG 與永續金融的核心概念，成為綠領人才的起點。</p>
+                            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">{t.academy_title}</h2>
+                            <p className="text-slate-600 font-medium max-w-2xl">{t.academy_subtitle}</p>
                         </div>
                     </div>
                     
                     <div className="max-w-[1400px] mx-auto w-full">
                         <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-12 pt-4 px-6 lg:px-12 hide-scrollbar snap-x snap-mandatory">
-                            {academyCards.map((card) => (
-                                <div key={card.id} onClick={() => onOpenNote(card)} className="aspect-square w-[280px] md:w-[320px] bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 snap-center flex flex-col group cursor-pointer relative overflow-hidden shrink-0">
+                            {academyCardsData.map((card) => (
+                                <div key={card.id} onClick={() => onOpenNote(card)} className="aspect-square min-h-[340px] w-[280px] md:w-[320px] bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 snap-center flex flex-col group cursor-pointer relative overflow-hidden shrink-0">
                                     <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-emerald-50 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 shadow-sm ${card.color}`}>
                                         {card.icon}
                                     </div>
-                                    <h3 className="text-xl font-bold text-slate-800 mb-3">{card.title}</h3>
-                                    <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow overflow-hidden line-clamp-4">{card.desc}</p>
+                                    <h3 className="text-xl font-bold text-slate-800 mb-3">{card.title[lang]}</h3>
+                                    <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow overflow-hidden">{card.desc[lang]}</p>
                                     <button className="text-left text-sm font-bold text-emerald-600 group-hover:text-emerald-700 mt-auto inline-flex items-center gap-1">
-                                        翻閱筆記 <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
+                                        {t.academy_read} <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
                                     </button>
                                 </div>
                             ))}
-                            <div className="aspect-square w-[280px] md:w-[320px] bg-emerald-600 p-8 rounded-3xl shadow-md text-white flex flex-col justify-center items-center text-center snap-center relative overflow-hidden group cursor-pointer shrink-0">
+                            <div className="aspect-square min-h-[340px] w-[280px] md:w-[320px] bg-emerald-600 p-8 rounded-3xl shadow-md text-white flex flex-col justify-center items-center text-center snap-center relative overflow-hidden group cursor-pointer shrink-0">
                                 <div className="absolute inset-0 bg-[url('https://placehold.co/400x400/047857/059669?text=pattern')] opacity-20 mix-blend-overlay"></div>
                                 <Lightbulb size={48} className="mb-4 text-emerald-200 group-hover:scale-110 transition-transform duration-500" />
-                                <h3 className="text-2xl font-bold mb-2 relative z-10">探索更多知識</h3>
-                                <p className="text-emerald-100 text-sm mb-6 relative z-10">註冊會員，解鎖完整 ESG 資料庫</p>
-                                <span className="px-6 py-2 bg-white text-emerald-700 rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-shadow relative z-10">前往知識庫</span>
+                                <h3 className="text-2xl font-bold mb-2 relative z-10">{t.academy_explore}</h3>
+                                <p className="text-emerald-100 text-sm mb-6 relative z-10">{t.academy_register}</p>
+                                <span className="px-6 py-2 bg-white text-emerald-700 rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-shadow relative z-10">{t.academy_go}</span>
                             </div>
                             <div className="w-[1px] shrink-0"></div>
                         </div>
@@ -562,16 +641,21 @@
             );
         };
 
-        const ServicesSection = ({ showToast }) => {
+        const ServicesSection = ({ showToast, t }) => {
+            const services = [
+                { id: 'consulting', title: t.srv_item_1, desc: t.srv_desc_1 },
+                { id: 'community', title: t.srv_item_2, desc: t.srv_desc_2 },
+                { id: 'education', title: t.srv_item_3, desc: t.srv_desc_3 }
+            ];
             return (
                 <section id="services" className="py-24 px-6 bg-slate-900 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none"></div>
                     <div className="max-w-6xl mx-auto relative z-10">
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div>
-                                <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">啟動您的<br/><span className="text-emerald-400">永續轉型計畫</span></h2>
+                                <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">{t.srv_title_1}<br/><span className="text-emerald-400">{t.srv_title_2}</span></h2>
                                 <p className="text-slate-400 text-lg mb-10 max-w-lg leading-relaxed">
-                                    碳吉團隊具備溫室氣體盤查、雲端技術與永續專案管理的跨領域專業能量。無論是數位化儀表板建置，或是創新的互動體驗，我們都能提供客製化支援。
+                                    {t.srv_desc}
                                 </p>
                                 
                                 <div className="space-y-4 mb-10">
@@ -591,41 +675,41 @@
                                 <div className="absolute -top-6 -right-6 w-24 h-24 bg-teal-100 rounded-full border-8 border-slate-900 flex items-center justify-center text-teal-600">
                                     <Mail size={32} />
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-800 mb-2">聯絡合作</h3>
-                                <p className="text-slate-500 text-sm mb-8">請留下您的需求，團隊專員將盡快與您聯繫。</p>
+                                <h3 className="text-2xl font-bold text-slate-800 mb-2">{t.contact_title}</h3>
+                                <p className="text-slate-500 text-sm mb-8">{t.contact_subtitle}</p>
                                 
-                                <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); showToast("感謝您的來信！此為展示介面，我們已收到您的心意。"); }}>
+                                <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); showToast("Message Sent! (Demo)"); }}>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                         <div className="space-y-1.5">
-                                            <label className="text-xs font-bold text-slate-700 ml-1">聯絡人姓名</label>
-                                            <input type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all" placeholder="Name" />
+                                            <label className="text-xs font-bold text-slate-700 ml-1">{t.contact_name}</label>
+                                            <input type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all" />
                                         </div>
                                         <div className="space-y-1.5">
-                                            <label className="text-xs font-bold text-slate-700 ml-1">所屬單位/企業</label>
-                                            <input type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all" placeholder="Company" />
+                                            <label className="text-xs font-bold text-slate-700 ml-1">{t.contact_company}</label>
+                                            <input type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all" />
                                         </div>
                                     </div>
                                     <div className="space-y-1.5">
-                                        <label className="text-xs font-bold text-slate-700 ml-1">聯絡信箱</label>
-                                        <input type="email" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all" placeholder="Email Address" />
+                                        <label className="text-xs font-bold text-slate-700 ml-1">{t.contact_email}</label>
+                                        <input type="email" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all" />
                                     </div>
                                     <div className="space-y-1.5">
-                                        <label className="text-xs font-bold text-slate-700 ml-1">合作意向需求</label>
+                                        <label className="text-xs font-bold text-slate-700 ml-1">{t.contact_type}</label>
                                         <select className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all text-slate-600 appearance-none">
-                                            <option value="">選擇服務類型...</option>
-                                            <option value="b2b">企業 ESG 數位轉型諮詢</option>
-                                            <option value="b2g">社區微氣候與韌性規劃</option>
-                                            <option value="b2c">永續互動教育專案開發</option>
-                                            <option value="other">其他合作洽談</option>
+                                            <option value="">{t.contact_opt_default}</option>
+                                            <option value="b2b">{t.contact_opt_1}</option>
+                                            <option value="b2g">{t.contact_opt_2}</option>
+                                            <option value="b2c">{t.contact_opt_3}</option>
+                                            <option value="other">{t.contact_opt_4}</option>
                                         </select>
                                     </div>
                                     <button type="submit" className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 transition-all mt-4 flex justify-center items-center gap-2">
-                                        送出訊息
+                                        {t.contact_submit}
                                     </button>
                                 </form>
                                 
                                 <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
-                                    <span className="text-xs text-slate-400 font-medium">或直接來信專案信箱</span>
+                                    <span className="text-xs text-slate-400 font-medium">{t.contact_or}</span>
                                     <a href="mailto:tanji2026@gmail.com" className="text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors bg-emerald-50 px-4 py-2 rounded-lg break-all">
                                         tanji2026@gmail.com
                                     </a>
@@ -637,21 +721,22 @@
             );
         };
 
-        const Footer = () => (
+        const Footer = ({ t }) => (
             <footer className="bg-slate-950 py-10 px-6 text-center border-t border-slate-800">
                 <div className="flex flex-col items-center justify-center gap-3 mb-6">
                     <Leaf size={24} className="text-emerald-500" />
                     <span className="font-bold tracking-widest uppercase text-sm text-slate-300">TanJi Ecosystem Project</span>
                 </div>
                 <div className="flex gap-4 justify-center mb-8">
-                    <a href="#" className="text-slate-500 hover:text-emerald-400 text-xs font-medium transition-colors">隱私權政策</a>
-                    <a href="#" className="text-slate-500 hover:text-emerald-400 text-xs font-medium transition-colors">服務條款</a>
+                    <a href="#" className="text-slate-500 hover:text-emerald-400 text-xs font-medium transition-colors">{t.footer_policy}</a>
+                    <a href="#" className="text-slate-500 hover:text-emerald-400 text-xs font-medium transition-colors">{t.footer_terms}</a>
                 </div>
                 <p className="text-slate-600 text-xs font-medium">© 2026 TanJi Project Core Team. All rights reserved.</p>
             </footer>
         );
 
         const App = () => {
+            const [lang, setLang] = useState('zh');
             const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
             const [user, setUser] = useState(null);
             const [isAdmin, setIsAdmin] = useState(false);
@@ -659,6 +744,9 @@
             const [showAdminModal, setShowAdminModal] = useState(false);
             const [showLoginModal, setShowLoginModal] = useState(false);
             const [selectedNote, setSelectedNote] = useState(null);
+
+            const t = uiText[lang];
+            const toggleLang = () => setLang(l => l === 'zh' ? 'en' : 'zh');
 
             useEffect(() => {
                 if (!window.firebaseEnv) return;
@@ -693,7 +781,7 @@
 
             const handleLoginConfirm = async (type, email, password) => {
                 if (!window.firebaseEnv) {
-                    throw new Error("Firebase 尚未準備好，請稍後再試。");
+                    throw new Error("Firebase not ready.");
                 }
                 const { auth, signInAnonymously, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, setDoc, doc, db, appId } = window.firebaseEnv;
                 
@@ -709,22 +797,17 @@
                             role: 'user',
                             createdAt: new Date().toISOString()
                         });
-                        showToast("註冊成功！歡迎加入碳吉圈圈。");
+                        showToast("Register Success!");
                     } else if (type === 'login') {
                         await signInWithEmailAndPassword(auth, email, password);
-                        showToast("登入成功！歡迎回來。");
+                        showToast("Login Success!");
                     } else if (type === 'anon') {
                         await signInAnonymously(auth);
-                        showToast("訪客登入成功！");
+                        showToast("Guest Login Success!");
                     }
                     setShowLoginModal(false);
                 } catch (error) {
-                    console.error(error);
-                    let errMsg = "發生錯誤，請稍後再試。";
-                    if (error.code === 'auth/email-already-in-use') errMsg = "此信箱已註冊過。";
-                    if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') errMsg = "信箱或密碼錯誤。";
-                    if (error.code === 'auth/weak-password') errMsg = "密碼長度過短。";
-                    throw new Error(errMsg);
+                    throw new Error("Error occurred.");
                 }
             };
 
@@ -732,18 +815,18 @@
                 if (!window.firebaseEnv) return;
                 try {
                     await window.firebaseEnv.signOut(window.firebaseEnv.auth);
-                    showToast("已成功登出。");
+                    showToast("Logged out.");
                 } catch (error) {
-                    console.error("登出失敗", error);
+                    console.error(error);
                 }
             };
 
             return (
                 <div className="flex flex-col min-h-screen">
                     <Toast message={toastMessage} onClose={() => setToastMessage("")} />
-                    <AdminModal isOpen={showAdminModal} onClose={() => setShowAdminModal(false)} />
-                    <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} onConfirm={handleLoginConfirm} />
-                    <NoteModal isOpen={!!selectedNote} onClose={() => setSelectedNote(null)} note={selectedNote} />
+                    <AdminModal isOpen={showAdminModal} onClose={() => setShowAdminModal(false)} t={t} />
+                    <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} onConfirm={handleLoginConfirm} t={t} />
+                    <NoteModal isOpen={!!selectedNote} onClose={() => setSelectedNote(null)} note={selectedNote} t={t} lang={lang} />
                     
                     <Navbar 
                         isMobileMenuOpen={isMobileMenuOpen} 
@@ -753,15 +836,18 @@
                         onLogin={() => setShowLoginModal(true)}
                         onLogout={handleLogout}
                         onOpenAdmin={() => setShowAdminModal(true)}
+                        lang={lang}
+                        toggleLang={toggleLang}
+                        t={t}
                     />
                     <main className="flex-grow">
-                        <HeroSection/>
-                        <EcosystemSection/>
-                        <AwardsSection/>
-                        <AcademySection onOpenNote={setSelectedNote} />
-                        <ServicesSection showToast={showToast} />
+                        <HeroSection t={t} />
+                        <EcosystemSection t={t} />
+                        <AwardsSection t={t} lang={lang} />
+                        <AcademySection onOpenNote={setSelectedNote} t={t} lang={lang} />
+                        <ServicesSection showToast={showToast} t={t} />
                     </main>
-                    <Footer/>
+                    <Footer t={t} />
                 </div>
             );
         };
