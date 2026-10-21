@@ -174,3 +174,29 @@
 @media(max-width:640px){#tanji-approved-preview .screen-project-grid{grid-template-columns:1fr}#tanji-approved-preview h2.screen-title{font-size:19px;min-height:0}#tanji-approved-preview .screen-info{padding:21px}}
 
 html{color-scheme:dark;scroll-behavior:smooth}body{margin:0;background:#101015}#tanji-approved-preview .text-link,#tanji-approved-preview .ta-view,#tanji-approved-preview .screen-view{gap:0!important}#tanji-approved-preview .arrow{margin-left:0!important}#tanji-approved-preview .screen-link{display:block}#tanji-approved-preview .contact-form input:disabled,#tanji-approved-preview .contact-form textarea:disabled{opacity:.7}
+
+/* Compact competition previews and consistent about-page layout. */
+#tanji-approved-preview .awards-home .ta-entry{flex-basis:47%;}
+#tanji-approved-preview .awards-home .ta-preview img{height:210px;aspect-ratio:auto;object-fit:contain;object-position:center;background:#15121c;}
+#tanji-approved-preview .awards-home .ta-plain-title{font-size:18px;padding:18px 20px 25px;min-height:100px;display:flex;align-items:center;justify-content:center;}
+#tanji-approved-preview .awards-home .ta-details{margin:18px;gap:9px 12px;}
+#tanji-approved-preview .awards-home .ta-entry .ta-details h3{font-size:17px;line-height:1.7;}
+#tanji-approved-preview .awards-home .ta-details>.ta-result{font-size:12px;padding:4px 9px;}
+#tanji-approved-preview .awards-home .ta-organizer{font-size:14px;}
+#tanji-approved-preview .screen-link img{height:210px;aspect-ratio:auto;object-fit:contain;background:#15121c;}
+#tanji-approved-preview h2.screen-title{font-size:18px;min-height:100px;padding:18px 20px 25px;}
+#tanji-approved-preview .screen-info{padding:20px;}
+#tanji-approved-preview .screen-description{margin-bottom:14px;}
+#tanji-approved-preview .contact-form{width:100%;margin-inline:auto;}
+#tanji-approved-preview .about-overview{padding-top:0;}
+#tanji-approved-preview .about-introduction{max-width:850px;font-size:18px;line-height:2; color:#b5b0c4!important;margin:0 auto 48px;}
+#tanji-approved-preview .about-brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;}
+#tanji-approved-preview .about-brand-grid>article{border:1px solid #ffffff1a;border-radius:16px;background:#1c1825;padding:32px;min-width:0;}
+#tanji-approved-preview .about-brand-grid h2{font-size:25px;margin:0 0 18px;}
+#tanji-approved-preview .about-brand-grid p{font-size:17px;line-height:2;color:#b5b0c4!important;}
+#tanji-approved-preview .about-character{display:flex;align-items:center;gap:20px;}
+#tanji-approved-preview .about-character .mascot-canvas{flex:0 1 210px;width:50%;min-width:0;aspect-ratio:1;height:auto;background:transparent;}
+#tanji-approved-preview .about-character .mascot-canvas img{width:100%;height:auto;object-fit:contain;}
+#tanji-approved-preview .about-character>div:last-child{flex:1;}
+@media(max-width:800px){#tanji-approved-preview .about-brand-grid{grid-template-columns:1fr;}#tanji-approved-preview .awards-home .ta-entry{flex-basis:72%;}}
+@media(max-width:640px){#tanji-approved-preview .awards-home .ta-entry{flex-basis:92%;}#tanji-approved-preview .awards-home .ta-preview img,#tanji-approved-preview .screen-link img{height:180px;}#tanji-approved-preview .awards-home .ta-plain-title,#tanji-approved-preview h2.screen-title{font-size:18px;min-height:96px;}#tanji-approved-preview .about-introduction{font-size:17px;margin-bottom:30px;}#tanji-approved-preview .about-brand-grid>article{padding:24px;}#tanji-approved-preview .about-character{gap:16px;}#tanji-approved-preview .about-brand-grid h2{font-size:22px;}#tanji-approved-preview .about-character .mascot-canvas{flex-basis:150px;}}

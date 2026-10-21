@@ -73,7 +73,7 @@
     try {
       await window.TanjiCloud.sendInquiry(inquiry);
       form.reset();
-      result.textContent = state.lang==='zh'?'訊息已送出，謝謝你的來信。':'Your message has been sent. Thank you.';
+      result.textContent = state.lang==='zh'?'已收到你的訊息，謝謝你的來信。':'We have received your message. Thank you.';
     } catch (error) {
       result.setAttribute('role','alert');
       result.textContent = state.lang==='zh'?'訊息未送出，填寫內容已保留。請稍後重試，或直接來信 '+content.settings.email+'。':'Your message was not sent. Your input has been kept; please retry or email '+content.settings.email+'.';
