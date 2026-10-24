@@ -25,6 +25,6 @@ async function checkSubmission(fails) {
   assert.equal(writes,1);
   assert.equal(reset,!fails);
   assert.equal(button.disabled,false);
-  assert(result.textContent.includes(fails?'未送出':'已送出'));
+  assert(result.textContent.includes(fails?'未送出':'已收到'));
 }
 (async()=>{await checkSubmission(false);await checkSubmission(true);console.log('PASS: contact clears only after confirmed write; failed delivery retains input and reports failure.');})().catch(error=>{console.error(error);process.exitCode=1;});
